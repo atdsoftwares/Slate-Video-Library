@@ -1,5 +1,10 @@
+import "./App.css";
+import Pagestructure from "./Pagestructure";
 function App() {
-  return <div>Hello this is development branch</div>;
+  return (
+    <div>
+      <Pagestructure />
+    </div>
+  );
 }
-
 export default App;
