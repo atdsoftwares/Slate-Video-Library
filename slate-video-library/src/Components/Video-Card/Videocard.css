@@ -1,20 +1,19 @@
 .video__cards {
-  height: 17rem;
-  width: 18rem;
-  border: 1px solid black;
+  height: 15rem;
+  width: 20rem;
+  border: 1px solid rgb(180, 180, 180);
   background-color: white;
-  position: fixed;
-  top: 5rem;
-  left: 9rem;
   transition: transform 100ms ease-in-out;
   border-radius: 0.3rem;
+  box-shadow: 1px 1px 1px 3px black;
+  margin: 0.5rem 0 2rem 2rem;
 }
 
 .video__cards:hover {
   transform: scale(1.1);
 }
 .video__cards-iframe-videos {
-  height: 10rem;
+  height: 10.5rem;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -28,16 +27,24 @@ iframe {
   margin: 0;
 }
 .video__cards-title {
-  padding: 0.5rem;
+  padding: 0.3rem;
 }
 .video__cards-details {
   display: flex;
-  padding: 0.3rem;
+  padding: 0.2rem;
   justify-content: space-between;
   align-items: center;
   background-color: rgb(191, 191, 246);
+  border-radius: 0.3rem;
 }
-.btn.btn-warning {
-  width: auto;
+button.btn.btn-warning {
+  width: 15%;
   padding: 0.2rem;
+}
+
+.video__cards-image img {
+  height: 3rem;
+  width: 3rem;
+  border-radius: 1rem;
+  border: none;
 }
