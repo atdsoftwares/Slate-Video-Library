@@ -1,6 +1,9 @@
 import React from "react";
+
 import "./Videocard.css";
-function Videocard() {
+function Videocard({ video }) {
+  const { _id, title, videoUrl, creator_pic } = video;
+  console.log(video);
   return (
     <div>
       <div className="video__cards">
@@ -8,17 +11,19 @@ function Videocard() {
           className="video__cards-iframe-videos"
           title=" videos"
           alt="videodata"
-          src="https://www.youtube.com/embed/tgbNymZ7vqY"
+          src={videoUrl}
         ></iframe>
         <div className="video__cards-details">
           <div className="video__cards-image">
-            <img src="/" alt="images" className="" /> channel title
+            <img src={creator_pic} alt="images" className="" />
           </div>
           <div className="video__cards-title">
-            <h2>title </h2>
+            <h3>{title} </h3>
           </div>
+          <button className="btn btn-warning">
+            <span class="material-icons">play_arrow</span>
+          </button>
         </div>
-        <button className="btn btn-warning"> watch now </button>
       </div>
     </div>
   );
