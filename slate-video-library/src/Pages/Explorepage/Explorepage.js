@@ -1,4 +1,5 @@
 import React from "react";
+import Chips from "../../Components/Chips/Chips";
 import { useExplorePageContext } from "../../Components/Context/ExplorepageContext";
 import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header/Header";
@@ -13,6 +14,7 @@ function Explorepage() {
     <div>
       <Header />
       <Sidebar />
+      <Chips />
       <div className="explorepage-videos-style">
         {videosdata.map((video) => (
           <Videocard key={video._id} video={video} />

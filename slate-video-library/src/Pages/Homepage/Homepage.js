@@ -1,4 +1,5 @@
 import React from "react";
+import Chips from "../../Components/Chips/Chips";
 import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header/Header";
 import Hero from "../../Components/Hero/Hero";
@@ -9,6 +10,7 @@ function Homepage() {
   return (
     <div>
       <Header />
+
       <Sidebar />
       <Hero />
       <Footer />
