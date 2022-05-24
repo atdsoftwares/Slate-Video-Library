@@ -1,0 +1,43 @@
+.video__cards {
+  height: 17rem;
+  width: 18rem;
+  border: 1px solid black;
+  background-color: white;
+  position: fixed;
+  top: 5rem;
+  left: 9rem;
+  transition: transform 100ms ease-in-out;
+  border-radius: 0.3rem;
+}
+
+.video__cards:hover {
+  transform: scale(1.1);
+}
+.video__cards-iframe-videos {
+  height: 10rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+iframe {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+.video__cards-title {
+  padding: 0.5rem;
+}
+.video__cards-details {
+  display: flex;
+  padding: 0.3rem;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(191, 191, 246);
+}
+.btn.btn-warning {
+  width: auto;
+  padding: 0.2rem;
+}
