@@ -1,10 +1,13 @@
 import React from "react";
-import Homepage from "./Pages/Homepage/Homepage";
+import App from "./App";
+import ExplorepageContext from "./Components/Context/ExplorepageContext";
 
 function Pagestructure() {
   return (
     <div>
-      <Homepage />
+      <ExplorepageContext>
+        <App />
+      </ExplorepageContext>
     </div>
   );
 }
