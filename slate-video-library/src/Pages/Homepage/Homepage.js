@@ -10,7 +10,6 @@ function Homepage() {
   return (
     <div>
       <Header />
-
       <Sidebar />
       <Hero />
       <Footer />
