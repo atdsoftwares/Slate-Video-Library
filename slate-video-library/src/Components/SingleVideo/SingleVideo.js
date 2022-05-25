@@ -5,8 +5,9 @@ import { useSingleVideoContext } from "../Context/SingleVideopageContext";
 import "./SingleVideo.css";
 
 function SingleVideo() {
-  const { setVideoId, videoData } = useSingleVideoContext();
+  const { dispatch, videoData, setVideoId } = useSingleVideoContext();
   const { _id } = useParams();
+  // dispatch({ type: "SINGLEVIDEID", payload: _id });
   setVideoId(_id);
 
   return (
