@@ -9,7 +9,7 @@ import "./Explorepage.css";
 function Explorepage() {
   const { state } = useExplorePageContext();
   const { videosdata } = state;
-  console.log(`videodata`, videosdata);
+
   return (
     <div>
       <Header />

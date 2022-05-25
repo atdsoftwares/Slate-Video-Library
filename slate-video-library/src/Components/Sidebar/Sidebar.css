@@ -1,7 +1,7 @@
 .aside {
   height: 80%;
   width: 6rem;
-  background-color: rgb(106, 161, 255);
+  background-color: var(--sky-blue-color);
   text-align: center;
   display: flex;
   justify-content: flex-start;
@@ -18,7 +18,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--white-color);
 }
 
 /* fetaures catagories  */

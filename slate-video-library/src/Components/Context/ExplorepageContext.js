@@ -9,6 +9,7 @@ function ExplorepageContext({ children }) {
     switch (action.type) {
       case "APIVIDEOSDATA":
         return { ...state, videosdata: action.payload };
+
       default:
         return state;
     }
@@ -16,6 +17,10 @@ function ExplorepageContext({ children }) {
   const [state, dispatch] = useReducer(reducerFn, {
     videosdata: [],
   });
+  const { videosdata } = state;
+  const { _id, title } = videosdata;
+
+  console.log(`videosdata`, videosdata);
 
   useEffect(() => {
     getVideos();
@@ -25,7 +30,7 @@ function ExplorepageContext({ children }) {
     try {
       await axios({
         method: "GET",
-        url: `/api/videos/`,
+        url: `/api/videos`,
       }).then((response) =>
         dispatch({
           type: "APIVIDEOSDATA",
@@ -38,7 +43,7 @@ function ExplorepageContext({ children }) {
   }
   return (
     <div>
-      <explorePage.Provider value={{ state, dispatch }}>
+      <explorePage.Provider value={{ _id, title, state, dispatch }}>
         {children}
       </explorePage.Provider>
     </div>

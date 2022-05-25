@@ -1,0 +1,44 @@
+.single-video-card {
+  display: flex;
+  margin-left: 10rem;
+  margin-top: 6rem;
+
+  justify-content: center;
+  align-items: center;
+  height: 25rem;
+  width: 50%;
+  background-color: var(--black-color);
+}
+.single-video-details {
+  display: flex;
+  margin-left: 10rem;
+  justify-content: space-between;
+  align-items: center;
+  height: 5rem;
+  padding: 2rem;
+  width: 50%;
+  background-color: var(--sky-blue-color);
+}
+.single-video-page-buttons {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 38%;
+  border: 1px solid var(--white-color);
+  height: 2.5rem;
+  color: var(--white-color);
+  background-color: var(--sky-blue-color);
+  transition: transform 100ms ease-in-out;
+}
+.single-video-page-buttons:hover {
+  transform: scale(1.1);
+}
+span.singlevideomi {
+  font-size: 1.8rem;
+  transition: transform 100ms ease-in-out;
+}
+span.singlevideomi:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+  color: var(--black-color);
+}
