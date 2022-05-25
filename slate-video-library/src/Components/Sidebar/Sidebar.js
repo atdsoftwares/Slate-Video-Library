@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Videocard from "../Video-Card/Videocard";
 
 import "./Sidebar.css";
@@ -7,16 +8,20 @@ function Sidebar() {
     <div>
       <aside className="aside">
         <div className="home">
-          <span className="material-icons sidebarmi" title="Home">
-            home
-          </span>
+          <Link to="/">
+            <span className="material-icons sidebarmi" title="Home">
+              home
+            </span>
+          </Link>
           Home
         </div>
 
-        <div className="explore">
-          <span className="material-icons sidebarmi" title="Explore">
-            explore
-          </span>
+        <div className="/explore">
+          <Link to="explore">
+            <span className="material-icons sidebarmi" title="Explore">
+              explore
+            </span>{" "}
+          </Link>
           Explore
         </div>
         <div className="playlists">

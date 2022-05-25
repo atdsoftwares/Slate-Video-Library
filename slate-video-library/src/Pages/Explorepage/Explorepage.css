@@ -1,0 +1,10 @@
+.explorepage-videos-style {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: 2rem;
+  margin-top: 1rem;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
