@@ -7,7 +7,7 @@ import "./SingleVideo.css";
 function SingleVideo() {
   const { dispatch, videoData, setVideoId } = useSingleVideoContext();
   const { _id } = useParams();
-  // dispatch({ type: "SINGLEVIDEID", payload: _id });
+  // dispatch({ type: "SINGLEVIDEOID", payload: _id });
   setVideoId(_id);
 
   return (
