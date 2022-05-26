@@ -24,6 +24,12 @@ function SingleVideopageContext({ children }) {
         return { ...state, SinglevideoLikes: action.payload };
       case "WATCHLATER":
         return { ...state, SinglevideoWatchLater: action.payload };
+      case "MODALSTATE":
+        return { ...state, modalState: action.payload };
+      case "INPUTSTATE":
+        return { ...state, inputState: action.payload };
+      case "PLAYLIST":
+        return { ...state, playlists: action.payload };
       default:
         return state;
     }
@@ -32,17 +38,19 @@ function SingleVideopageContext({ children }) {
     videoData: [],
     SinglevideoLikes: [],
     SinglevideoWatchLater: [],
+    modalState: "none",
+    inputState: "",
+    playlists: [],
   });
 
-  const { videoData, SinglevideoLikes, SinglevideoWatchLater } = state;
-  console.log(
-    "🚀 ~ file: SingleVideopageContext.js ~ line 38 ~ SingleVideopageContext ~ SinglevideoWatchLater",
-    SinglevideoWatchLater
-  );
-  console.log(
-    "🚀 ~ file: SingleVideopageContext.js ~ line 39 ~ SingleVideopageContext ~ Likes",
-    SinglevideoLikes
-  );
+  const {
+    videoData,
+    SinglevideoLikes,
+    SinglevideoWatchLater,
+    modalState,
+    inputState,
+    playlists,
+  } = state;
 
   // get single video data from url parameters
   async function getSingleVideos() {
@@ -91,6 +99,26 @@ function SingleVideopageContext({ children }) {
     });
   };
 
+  // make a playlist
+  async function postPlaylist() {
+    try {
+      const response = await axios({
+        method: "POST",
+        url: `/api/user/playlists`,
+        headers: { authorization: localStorage.getItem("token") },
+        data: {
+          playlist: { playlistName: inputState },
+        },
+      });
+      dispatch({
+        type: "PLAYLIST",
+        payload: response.data.playlists,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <div>
       <singleVideoContext.Provider
@@ -100,6 +128,10 @@ function SingleVideopageContext({ children }) {
           dispatch,
           likedVideo,
           watchLaterVideo,
+          modalState,
+          inputState,
+          playlists,
+          postPlaylist,
         }}
       >
         {children}
