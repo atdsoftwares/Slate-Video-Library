@@ -7,3 +7,9 @@
 a {
   text-decoration: none;
 }
+
+:root {
+  --sky-blue-color: rgb(129, 129, 255);
+  --white-color: rgb(255, 255, 255);
+  --black-color: rgb(0, 0, 0);
+}
