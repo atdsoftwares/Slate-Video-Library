@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useSingleVideoContext } from "../Context/SingleVideopageContext";
+import PlaylistModal from "../PlaylistModal/PlaylistModal";
 import "./SingleVideo.css";
 
 function SingleVideo() {
@@ -45,12 +46,18 @@ function SingleVideo() {
             class="material-icons singlevideomi"
             onClick={() => watchLaterVideo(videoData, dispatch)}
           >
+            watch_later
+          </span>
+          <span
+            class="material-icons singlevideomi"
+            onClick={() => dispatch({ type: "MODALSTATE", payload: "block" })}
+          >
             playlist_add
           </span>
-          <span class="material-icons singlevideomi">watch_later</span>
           <span class="material-icons singlevideomi">create</span>
         </div>
       </div>
+      <PlaylistModal />
     </div>
   );
 }
