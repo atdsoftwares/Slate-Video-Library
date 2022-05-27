@@ -26,17 +26,21 @@ function WatchlaterpageContext({ children }) {
 
   // add video to watchlater page
   const addToWatchLaterVideosFn = async (videoData, setWatchLaterFn) => {
-    const response = await axios({
-      method: "POST",
-      url: `/api/user/watchlater`,
-      headers: { authorization: localStorage.getItem("token") },
-      data: { video: videoData },
-    });
+    try {
+      const response = await axios({
+        method: "POST",
+        url: `/api/user/watchlater`,
+        headers: { authorization: localStorage.getItem("token") },
+        data: { video: videoData },
+      });
 
-    setWatchLaterFn({
-      type: "ADD_TO_WATCHLATER",
-      payload: response.data.watchlater,
-    });
+      setWatchLaterFn({
+        type: "ADD_TO_WATCHLATER",
+        payload: response.data.watchlater,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getWatchLaterVideosFn = async () => {
@@ -56,17 +60,21 @@ function WatchlaterpageContext({ children }) {
   };
 
   const removeWatchLaterVideosFn = async (_id) => {
-    const response = await axios({
-      method: "DELETE",
-      url: `/api/user/watchlater/${_id}`,
-      headers: { authorization: localStorage.getItem("token") },
-      data: { video: setWatchLaterFn },
-    });
+    try {
+      const response = await axios({
+        method: "DELETE",
+        url: `/api/user/watchlater/${_id}`,
+        headers: { authorization: localStorage.getItem("token") },
+        data: { video: setWatchLaterFn },
+      });
 
-    setWatchLaterFn({
-      type: "GET_WATCHLATER_VIDEOS",
-      payload: response.data.watchlater,
-    });
+      setWatchLaterFn({
+        type: "GET_WATCHLATER_VIDEOS",
+        payload: response.data.watchlater,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

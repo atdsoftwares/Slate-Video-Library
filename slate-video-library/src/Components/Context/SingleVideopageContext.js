@@ -37,7 +37,7 @@ function SingleVideopageContext({ children }) {
   const { videoData, modalState, inputState } = state;
 
   // get single video complete data from url parameters
-  async function getSingleVideos() {
+  async function getSingleVideosFn() {
     try {
       await axios.get(`/api/video/${videoId}`).then((response) =>
         dispatch({
@@ -51,7 +51,7 @@ function SingleVideopageContext({ children }) {
   }
 
   useEffect(() => {
-    getSingleVideos();
+    getSingleVideosFn();
   }, [videoId]);
 
   return (

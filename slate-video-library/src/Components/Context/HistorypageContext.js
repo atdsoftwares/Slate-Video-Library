@@ -13,7 +13,7 @@ function HistorypageContext({ children }) {
         return { ...state, getHistory: action.payload };
       case "REMOVE_ALL_HISTORY":
         return { ...state, removeCompleteHistory: action.payload };
-      case "REMOVE_ONEVIDEO_FROM_HISTORY":
+      case "REMOVE_VIDEO_FROM_HISTORY":
         return { ...state, removeVideoFromHistory: action.payload };
       default:
         return state;
@@ -28,59 +28,71 @@ function HistorypageContext({ children }) {
   });
 
   const { getHistory } = state;
-  console.log(
-    "🚀 ~ file: HistorypageContext.js ~ line 29 ~ HistorypageContext ~ getHistory",
-    getHistory
-  );
 
   const addToHistoryFn = async (videoData, setHistoryFn) => {
-    const response = await axios({
-      method: "POST",
-      url: `/api/user/history`,
-      headers: { authorization: localStorage.getItem("token") },
-      data: { video: videoData },
-    });
-    setHistoryFn({
-      type: "ADD_TO_HISTORY",
-      payload: response.data.history,
-    });
+    try {
+      const response = await axios({
+        method: "POST",
+        url: `/api/user/history`,
+        headers: { authorization: localStorage.getItem("token") },
+        data: { video: videoData },
+      });
+      setHistoryFn({
+        type: "ADD_TO_HISTORY",
+        payload: response.data.history,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getHistoryFn = async () => {
-    const response = await axios({
-      method: "GET",
-      url: `/api/user/history`,
-      headers: { authorization: localStorage.getItem("token") },
-    });
-    setHistoryFn({
-      type: "GET_HISTORY",
-      payload: response.data.history,
-    });
+    try {
+      const response = await axios({
+        method: "GET",
+        url: `/api/user/history`,
+        headers: { authorization: localStorage.getItem("token") },
+      });
+      setHistoryFn({
+        type: "GET_HISTORY",
+        payload: response.data.history,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const removeAllHistoryFn = async () => {
-    const response = await axios({
-      method: "DELETE",
-      url: `/api/user/history/all`,
-      headers: { authorization: localStorage.getItem("token") },
-    });
-    setHistoryFn({
-      type: "GET_HISTORY",
-      payload: response.data.history,
-    });
+    try {
+      const response = await axios({
+        method: "DELETE",
+        url: `/api/user/history/all`,
+        headers: { authorization: localStorage.getItem("token") },
+      });
+      setHistoryFn({
+        type: "GET_HISTORY",
+        payload: response.data.history,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const removeVideoFromHistoryFn = async (_id) => {
-    const response = await axios({
-      method: "DELETE",
-      url: `/api/user/history/${_id}`,
-      headers: { authorization: localStorage.getItem("token") },
-      data: { video: setHistoryFn },
-    });
-    setHistoryFn({
-      type: "GET_HISTORY",
-      payload: response.data.history,
-    });
+    try {
+      const response = await axios({
+        method: "DELETE",
+        url: `/api/user/history/${_id}`,
+        headers: { authorization: localStorage.getItem("token") },
+        data: { video: setHistoryFn },
+      });
+      setHistoryFn({
+        type: "GET_HISTORY",
+        payload: response.data.history,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

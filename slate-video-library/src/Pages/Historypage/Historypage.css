@@ -1,0 +1,16 @@
+button.clearallhistory {
+  width: 15%;
+  position: fixed;
+  bottom: 4rem;
+  left: 10rem;
+}
+h1.historypage-title {
+  display: flex;
+  justify-content: center;
+  width: 80%;
+  align-items: center;
+  font-size: 2rem;
+  padding: 1rem;
+  margin: 1rem;
+  color: var(--red-shade-color);
+}

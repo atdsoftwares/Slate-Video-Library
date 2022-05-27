@@ -25,13 +25,17 @@ function LikespageContext({ children }) {
 
   // add video to watchlater page
   const addToLikesFn = async (videoData, setLikesFn) => {
-    const response = await axios({
-      method: "POST",
-      url: `/api/user/likes`,
-      headers: { authorization: localStorage.getItem("token") },
-      data: { video: videoData },
-    });
-    setLikesFn({ type: "ADD_TO_LIKES", payload: response.data.likes });
+    try {
+      const response = await axios({
+        method: "POST",
+        url: `/api/user/likes`,
+        headers: { authorization: localStorage.getItem("token") },
+        data: { video: videoData },
+      });
+      setLikesFn({ type: "ADD_TO_LIKES", payload: response.data.likes });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getLikedVideosFn = async () => {
@@ -51,16 +55,20 @@ function LikespageContext({ children }) {
   };
 
   const removeLikedVideosFn = async (_id) => {
-    const response = await axios({
-      method: "DELETE",
-      url: `/api/user/likes/${_id}`,
-      headers: { authorization: localStorage.getItem("token") },
-      data: { video: setLikesFn },
-    });
-    setLikesFn({
-      type: "GET_LIKED_VIDEOS",
-      payload: response.data.likes,
-    });
+    try {
+      const response = await axios({
+        method: "DELETE",
+        url: `/api/user/likes/${_id}`,
+        headers: { authorization: localStorage.getItem("token") },
+        data: { video: setLikesFn },
+      });
+      setLikesFn({
+        type: "GET_LIKED_VIDEOS",
+        payload: response.data.likes,
+      });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

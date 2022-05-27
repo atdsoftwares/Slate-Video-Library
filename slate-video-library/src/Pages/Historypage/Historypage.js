@@ -21,26 +21,34 @@ function Historypage() {
     <div>
       <Header />
       <Sidebar />
+      <h1 className="historypage-title"> HISTORY PAGE</h1>
 
       <div className="watchlater-container">
         <button
-          className="btn btn-warning clearallhistory"
+          className="btn btn-danger clearallhistory"
           onClick={removeAllHistoryFn}
         >
-          {" "}
           clear history
         </button>
-        {getHistory.map((history) => (
-          <div className="watchlaterdata">
-            <SmallVideoCards props={history.videoUrl} />
-            <span
-              className="material-icons watchlatermi"
-              onClick={(_id) => removeVideoFromHistoryFn(history._id)}
-            >
-              delete
-            </span>
-          </div>
-        ))}
+
+        {getHistory.length === 0 ? (
+          <h3 className="historypage-title">
+            {" "}
+            THE HISTORY IS EMPTY , WATCH SOMETHING TO ADD HERE{" "}
+          </h3>
+        ) : (
+          getHistory.map((history) => (
+            <div className="watchlaterdata">
+              <SmallVideoCards props={history.videoUrl} />
+              <span
+                className="material-icons watchlatermi"
+                onClick={(_id) => removeVideoFromHistoryFn(history._id)}
+              >
+                delete
+              </span>
+            </div>
+          ))
+        )}
       </div>
       <Footer />
     </div>

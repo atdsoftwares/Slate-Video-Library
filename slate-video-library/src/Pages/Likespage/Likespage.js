@@ -21,18 +21,23 @@ function Likespage() {
     <div>
       <Header />
       <Sidebar />
+      <h1 className="historypage-title"> LIKES PAGE</h1>
       <div className="likes-container">
-        {getLikedVideos.map((like) => (
-          <div className="likesdata">
-            <SmallVideoCards props={like.videoUrl} />
-            <span
-              className="material-icons likesmi"
-              onClick={(_id) => removeLikedVideosFn(like._id)}
-            >
-              delete
-            </span>
-          </div>
-        ))}
+        {getLikedVideos.length <= 0 ? (
+          <h3 className="historypage-title">THERE ARE NO LIKED VIDEOS </h3>
+        ) : (
+          getLikedVideos.map((like) => (
+            <div className="likesdata">
+              <SmallVideoCards props={like.videoUrl} />
+              <span
+                className="material-icons likesmi"
+                onClick={(_id) => removeLikedVideosFn(like._id)}
+              >
+                delete
+              </span>
+            </div>
+          ))
+        )}
       </div>
       <Footer />
     </div>

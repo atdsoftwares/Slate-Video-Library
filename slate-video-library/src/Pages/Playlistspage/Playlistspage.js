@@ -20,24 +20,33 @@ function Playlistspage() {
     <div>
       <Header />
       <Sidebar />
-
+      <h1 className="historypage-title"> PLAYLISTS PAGE</h1>
       <div className="playlist-container">
-        {addToPlaylists.map((playlistData) => (
-          <div>
-            <div className="playlistdata">
-              <span className="material-icons playlisticon">playlist_play</span>
-              <div className="playlistpage">
-                Playlist {playlistData.playlistName}
+        {addToPlaylists.length <= 0 ? (
+          <h3 className="historypage-title">
+            {" "}
+            THERE ARE NO PLAYLIST TO DISPLAY{" "}
+          </h3>
+        ) : (
+          addToPlaylists.map((playlistData) => (
+            <div>
+              <div className="playlistdata">
+                <span className="material-icons playlisticon">
+                  playlist_play
+                </span>
+                <div className="playlistpage">
+                  Playlist {playlistData.playlistName}
+                </div>
               </div>
+              <span
+                className="material-icons playlistmi"
+                onClick={(_id) => removePlaylistFn(playlistData._id)}
+              >
+                delete
+              </span>
             </div>
-            <span
-              className="material-icons playlistmi"
-              onClick={(_id) => removePlaylistFn(playlistData._id)}
-            >
-              delete
-            </span>
-          </div>
-        ))}
+          ))
+        )}
       </div>
 
       <Footer />
