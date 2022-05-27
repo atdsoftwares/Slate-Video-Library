@@ -64,7 +64,7 @@ function WatchlaterpageContext({ children }) {
     });
 
     setWatchLaterFn({
-      type: "ADD_TO_WATCHLATER",
+      type: "GET_WATCHLATER_VIDEOS",
       payload: response.data.watchlater,
     });
   };
