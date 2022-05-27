@@ -16,8 +16,8 @@ function Sidebar() {
           Home
         </div>
 
-        <div className="/explore">
-          <Link to="explore">
+        <div className="explore">
+          <Link to="/explore">
             <span className="material-icons sidebarmi" title="Explore">
               explore
             </span>{" "}
@@ -25,29 +25,37 @@ function Sidebar() {
           Explore
         </div>
         <div className="playlists">
-          <span className="material-icons sidebarmi" title="Playlists">
-            queue
-          </span>
+          <Link to="/playlists">
+            <span className="material-icons sidebarmi" title="Playlists">
+              queue
+            </span>{" "}
+          </Link>
           Playlists
         </div>
 
         <div className="likes">
-          <span className="material-icons sidebarmi" title="Liked Video">
-            thumb_up
-          </span>
+          <Link to="/likes">
+            <span className="material-icons sidebarmi" title="Liked Video">
+              thumb_up
+            </span>{" "}
+          </Link>
           Likes
         </div>
 
         <div className="watchlater">
-          <span className="material-icons sidebarmi" title="History">
-            watch_later
-          </span>
+          <Link to="/watchlater">
+            <span className="material-icons sidebarmi" title="History">
+              watch_later
+            </span>{" "}
+          </Link>
           Watch Later
         </div>
         <div className="history">
-          <span className="material-icons sidebarmi" title="History">
-            history
-          </span>
+          <Link to="/history">
+            <span className="material-icons sidebarmi" title="History">
+              history
+            </span>{" "}
+          </Link>
           History
         </div>
       </aside>

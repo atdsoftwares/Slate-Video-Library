@@ -1,14 +1,26 @@
 import React from "react";
 import App from "./App";
 import ExplorepageContext from "./Components/Context/ExplorepageContext";
+import HistorypageContext from "./Components/Context/HistorypageContext";
+import LikespageContext from "./Components/Context/LikespageContext";
+import PlaylistpageContext from "./Components/Context/PlaylistpageContext";
 import SingleVideopageContext from "./Components/Context/SingleVideopageContext";
+import WatchlaterpageContext from "./Components/Context/WatchlaterpageContext";
 
 function Pagestructure() {
   return (
     <div>
       <ExplorepageContext>
         <SingleVideopageContext>
-          <App />
+          <PlaylistpageContext>
+            <LikespageContext>
+              <WatchlaterpageContext>
+                <HistorypageContext>
+                  <App />
+                </HistorypageContext>
+              </WatchlaterpageContext>
+            </LikespageContext>
+          </PlaylistpageContext>
         </SingleVideopageContext>
       </ExplorepageContext>
     </div>

@@ -1,18 +1,17 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { useLikeContext } from "../Context/LikespageContext";
 import { useSingleVideoContext } from "../Context/SingleVideopageContext";
+import { useWatchLaterContext } from "../Context/WatchlaterpageContext";
 import PlaylistModal from "../PlaylistModal/PlaylistModal";
 import "./SingleVideo.css";
 
 function SingleVideo() {
-  const {
-    videoData,
-    setVideoId,
-    likedVideo,
-    dispatch,
-    watchLaterVideo,
-  } = useSingleVideoContext();
+  const { videoData, setVideoId, dispatch } = useSingleVideoContext();
+  const { addToWatchLaterVideosFn, setWatchLaterFn } = useWatchLaterContext();
+  const { setLikesFn, addToLikesFn } = useLikeContext();
+
   const { _id } = useParams();
   setVideoId(_id);
 
@@ -38,13 +37,13 @@ function SingleVideo() {
         <div className="single-video-page-buttons">
           <span
             class="material-icons singlevideomi"
-            onClick={() => likedVideo(videoData, dispatch)}
+            onClick={() => addToLikesFn(videoData, setLikesFn)}
           >
             thumb_up
           </span>
           <span
             class="material-icons singlevideomi"
-            onClick={() => watchLaterVideo(videoData, dispatch)}
+            onClick={() => addToWatchLaterVideosFn(videoData, setWatchLaterFn)}
           >
             watch_later
           </span>
