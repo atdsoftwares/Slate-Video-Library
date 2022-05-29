@@ -7,7 +7,9 @@ function NotesAppContext({ children }) {
   const [inputNotesTextValue, setinputNotesTextValue] = useState("");
   const [inputNotesData, setinputNotesData] = useState([]);
 
-  function saveNotesFn() {
+  function saveNotesFn(e) {
+    e.preventDefault();
+
     const inputNotesData1 = [
       ...inputNotesData,
       { _id: uuid(), inputNotesTextValue },
