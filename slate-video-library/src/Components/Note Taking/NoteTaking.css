@@ -1,0 +1,53 @@
+input.notes-app {
+  border: 3px solid var(--black-color);
+  height: 15rem;
+  width: 24rem;
+  background-color: var(--silver-color);
+  font-size: 1.5rem;
+  padding: 1rem;
+  color: var(--red-color);
+}
+.notes-container {
+  height: auto;
+  width: 20rem;
+  margin-left: 8rem;
+  margin-top: 6rem;
+  position: absolute;
+  top: 0rem;
+  right: 12rem;
+}
+button span.notesmi {
+  margin: 0.2rem;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 24rem;
+}
+th,
+td.notes-data {
+  width: 80%;
+}
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+.btns {
+  height: 2rem;
+  width: 2rem;
+  border-radius: 50%;
+  background-color: var(--black-color);
+  color: var(--white-color);
+  margin: 0 0.5rem 0 0.5rem;
+  cursor: pointer;
+}
+.btns:hover {
+  color: var(--black-color);
+  background-color: var(--white-color);
+}
