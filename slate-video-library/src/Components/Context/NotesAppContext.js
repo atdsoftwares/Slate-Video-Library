@@ -22,11 +22,10 @@ function NotesAppContext({ children }) {
   }
 
   function editNotesFn(_id) {
-    // const inputNotesData1 = inputNotesData.find((f) => {
-    //   return f._id === _id;
-    // });
-    console.log(_id);
-    // setinputNotesTextValue(inputNotesData1.inputNotesTextValue);
+    const inputNotesData1 = inputNotesData.find((f) => {
+      return f._id === _id;
+    });
+    setinputNotesTextValue(inputNotesData1.inputNotesTextValue);
   }
 
   console.log(inputNotesData);
