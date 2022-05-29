@@ -20,21 +20,29 @@ function SingleVideopageContext({ children }) {
     switch (action.type) {
       case "SINGLEVIDEODATA":
         return { ...state, videoData: action.payload };
-      case "MODALSTATE":
-        return { ...state, modalState: action.payload };
       case "INPUTSTATE":
         return { ...state, inputState: action.payload };
+      case "NOTESTAKINGBOXSTATE":
+        return { ...state, notesTakingBoxState: action.payload };
+      case "PLAYLISTBOXSTATE":
+        return { ...state, playlistBoxState: action.payload };
       default:
         return state;
     }
   }
   const [state, dispatch] = useReducer(reducerFn, {
     videoData: [],
-    modalState: "none",
     inputState: "",
+    notesTakingBoxState: "none",
+    playlistBoxState: "none",
   });
 
-  const { videoData, modalState, inputState } = state;
+  const {
+    videoData,
+    inputState,
+    notesTakingBoxState,
+    playlistBoxState,
+  } = state;
 
   // get single video complete data from url parameters
   async function getSingleVideosFn() {
@@ -54,15 +62,34 @@ function SingleVideopageContext({ children }) {
     getSingleVideosFn();
   }, [videoId]);
 
+  // toggle notes app
+  const toggleNotesApp = () => {
+    dispatch({
+      type: "NOTESTAKINGBOXSTATE",
+      payload: notesTakingBoxState === "none" ? "block" : "none",
+    });
+  };
+
+  // toggle playlist app
+
+  const togglePlaylistApp = () => {
+    dispatch({
+      type: "PLAYLISTBOXSTATE",
+      payload: playlistBoxState === "none" ? "block" : "none",
+    });
+  };
   return (
     <div>
       <singleVideoContext.Provider
         value={{
           setVideoId,
           videoData,
-          modalState,
           inputState,
           dispatch,
+          notesTakingBoxState,
+          playlistBoxState,
+          toggleNotesApp,
+          togglePlaylistApp,
         }}
       >
         {children}

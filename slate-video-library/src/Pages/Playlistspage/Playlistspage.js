@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { usePlaylistContext } from "../../Components/Context/PlaylistpageContext";
 import { useSingleVideoContext } from "../../Components/Context/SingleVideopageContext";
 import Footer from "../../Components/Footer/Footer";
@@ -34,9 +35,11 @@ function Playlistspage() {
                 <span className="material-icons playlisticon">
                   playlist_play
                 </span>
-                <div className="playlistpage">
-                  Playlist {playlistData.playlistName}
-                </div>
+                <Link to={`/playlists/${playlistData._id}`}>
+                  <div className="playlistpage">
+                    Playlist {playlistData.playlistName}
+                  </div>
+                </Link>
               </div>
               <span
                 className="material-icons playlistmi"

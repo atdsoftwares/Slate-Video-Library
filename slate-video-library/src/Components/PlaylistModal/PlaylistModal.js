@@ -4,18 +4,22 @@ import { useSingleVideoContext } from "../Context/SingleVideopageContext";
 import "./PlaylistModal.css";
 
 function PlaylistModal() {
-  const { modalState, dispatch } = useSingleVideoContext();
-
-  const { makePlaylistFn, addToPlaylists } = usePlaylistContext();
+  const { playlistBoxState, dispatch } = useSingleVideoContext();
+  const { videoData } = useSingleVideoContext();
+  const {
+    makePlaylistFn,
+    addToPlaylists,
+    addVideosIntoPlaylistFn,
+  } = usePlaylistContext();
 
   return (
-    <div className="playlist-modal" style={{ display: modalState }}>
-      <span
+    <div className="playlist-modal" style={{ display: playlistBoxState }}>
+      {/* <span
         class="material-icons modalmi"
         onClick={() => dispatch({ type: "MODALSTATE", payload: "none" })}
       >
         cancel
-      </span>
+      </span> */}
       <div className="playlist-title">Make a playlist</div>
       <div className="inputs">
         <input
@@ -33,7 +37,11 @@ function PlaylistModal() {
 
       {addToPlaylists.map((inputtext) => (
         <div className="print-playlist">
-          <input type="checkbox" className="checkbox" />
+          <input
+            type="checkbox"
+            className="checkbox"
+            onChange={() => addVideosIntoPlaylistFn(inputtext._id, videoData)}
+          />
           {inputtext.playlistName}
         </div>
       ))}
