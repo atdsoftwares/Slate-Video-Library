@@ -22,15 +22,17 @@ function NoteTaking() {
         display: notesTakingBoxState,
       }}
     >
-      <input
-        type="text"
-        className="notes-app"
-        value={inputNotesTextValue}
-        onChange={(e) => setinputNotesTextValue(e.target.value)}
-      />
-      <button class="btn btn-warning-outline" onClick={saveNotesFn}>
-        save
-      </button>
+      <form onSubmit={saveNotesFn}>
+        <input
+          type="text"
+          className="notes-app"
+          value={inputNotesTextValue}
+          onChange={(e) => setinputNotesTextValue(e.target.value)}
+          required
+          placeholder="take notes "
+        />
+        <input type="submit" class="form-submit" />
+      </form>
       <div>
         <div>
           <table>

@@ -1,11 +1,12 @@
 input.notes-app {
-  border: 3px solid var(--black-color);
-  height: 15rem;
-  width: 24rem;
+  height: 10rem;
+  width: 20rem;
   background-color: var(--silver-color);
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   padding: 1rem;
-  color: var(--red-color);
+  border: none;
+  outline: 0;
+  text-align: left;
 }
 .notes-container {
   height: auto;
@@ -22,7 +23,7 @@ button span.notesmi {
 table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
-  width: 24rem;
+  width: 20rem;
 }
 th,
 td.notes-data {
@@ -50,4 +51,8 @@ tr:nth-child(even) {
 .btns:hover {
   color: var(--black-color);
   background-color: var(--white-color);
+}
+input.form-submit {
+  width: 25%;
+  margin: 1rem;
 }
