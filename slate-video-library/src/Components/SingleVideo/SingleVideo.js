@@ -2,13 +2,21 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useLikeContext } from "../Context/LikespageContext";
+import { usePlaylistContext } from "../Context/PlaylistpageContext";
 import { useSingleVideoContext } from "../Context/SingleVideopageContext";
 import { useWatchLaterContext } from "../Context/WatchlaterpageContext";
+import NoteTaking from "../Note Taking/NoteTaking";
 import PlaylistModal from "../PlaylistModal/PlaylistModal";
 import "./SingleVideo.css";
 
 function SingleVideo() {
-  const { videoData, setVideoId, dispatch } = useSingleVideoContext();
+  const {
+    videoData,
+    setVideoId,
+    dispatch,
+    toggleNotesApp,
+    togglePlaylistApp,
+  } = useSingleVideoContext();
   const { addToWatchLaterVideosFn, setWatchLaterFn } = useWatchLaterContext();
   const { setLikesFn, addToLikesFn } = useLikeContext();
 
@@ -49,14 +57,17 @@ function SingleVideo() {
           </span>
           <span
             class="material-icons singlevideomi"
-            onClick={() => dispatch({ type: "MODALSTATE", payload: "block" })}
+            onClick={togglePlaylistApp}
           >
             playlist_add
           </span>
-          <span class="material-icons singlevideomi">create</span>
+          <span class="material-icons singlevideomi" onClick={toggleNotesApp}>
+            create
+          </span>
         </div>
       </div>
       <PlaylistModal />
+      <NoteTaking />
     </div>
   );
 }
