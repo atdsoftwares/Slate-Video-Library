@@ -6,20 +6,11 @@ import "./PlaylistModal.css";
 function PlaylistModal() {
   const { playlistBoxState, dispatch } = useSingleVideoContext();
   const { videoData } = useSingleVideoContext();
-  const {
-    makePlaylistFn,
-    addToPlaylists,
-    addVideosIntoPlaylistFn,
-  } = usePlaylistContext();
+  const { makePlaylistFn, addToPlaylists, addVideosIntoPlaylistFn } =
+    usePlaylistContext();
 
   return (
     <div className="playlist-modal" style={{ display: playlistBoxState }}>
-      {/* <span
-        class="material-icons modalmi"
-        onClick={() => dispatch({ type: "MODALSTATE", payload: "none" })}
-      >
-        cancel
-      </span> */}
       <div className="playlist-title">Make a playlist</div>
       <div className="inputs">
         <input
