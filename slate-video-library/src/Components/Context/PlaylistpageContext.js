@@ -55,6 +55,7 @@ function PlaylistpageContext({ children }) {
           playlist: { playlistName: inputState },
         },
       });
+
       setPlaylistFn({
         type: "ADD_PLAYLISTS",
         payload: response.data.playlists,

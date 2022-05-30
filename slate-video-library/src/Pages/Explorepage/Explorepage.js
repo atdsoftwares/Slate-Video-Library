@@ -3,12 +3,13 @@ import Chips from "../../Components/Chips/Chips";
 import { useExplorePageContext } from "../../Components/Context/ExplorepageContext";
 import Footer from "../../Components/Footer/Footer";
 import Header from "../../Components/Header/Header";
+import Spinner from "../../Components/LaodingSpinner/Spinner";
 import Sidebar from "../../Components/Sidebar/Sidebar";
 import Videocard from "../../Components/Video-Card/Videocard";
 import "./Explorepage.css";
 function Explorepage() {
-  const { state } = useExplorePageContext();
-  const { videosdata } = state;
+  const { state, finalData } = useExplorePageContext();
+  const { isLoading } = state;
 
   return (
     <div>
@@ -16,9 +17,13 @@ function Explorepage() {
       <Sidebar />
       <Chips />
       <div className="explorepage-videos-style">
-        {videosdata.map((video) => (
-          <Videocard key={video._id} video={video} />
-        ))}
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          finalData.map((video) => {
+            return <Videocard key={video._id} video={video} />;
+          })
+        )}
       </div>
       <Footer />
     </div>
