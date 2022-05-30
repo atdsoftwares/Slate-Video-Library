@@ -6,9 +6,8 @@
   --regular-font: "Inter", sans-serif;
 }
 
-.chips {
+input[type="submit"].chips {
   color: black;
-  font-family: var(--regular-font);
   font-size: 1rem;
   border-radius: 100rem;
   box-shadow: 0 0 0 2px var(--light-color);
@@ -38,4 +37,22 @@
   align-items: center;
   width: 50%;
   margin-left: 12rem;
+}
+.input[type="submit"].chips2 {
+  color: black;
+  font-size: 1rem;
+  border-radius: 100rem;
+  box-shadow: 0 0 0 2px var(--light-color);
+  background-color: transparent;
+  background-color: red;
+  font-weight: bold;
+  transition: background-color 250ms ease, box-shadow 250ms ease;
+  margin-top: 5rem;
+  width: 15%;
+  height: 2rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  cursor: pointer;
 }
