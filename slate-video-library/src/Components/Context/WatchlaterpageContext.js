@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useContext, useEffect, useReducer } from "react";
+import Toast from "../Toast/Toast";
 import { useSingleVideoContext } from "./SingleVideopageContext";
 
 const watchLaterContext = createContext();
@@ -38,6 +39,10 @@ function WatchlaterpageContext({ children }) {
         type: "ADD_TO_WATCHLATER",
         payload: response.data.watchlater,
       });
+      Toast({
+        type: "success",
+        message: `video added to watchlater `,
+      });
     } catch (error) {
       console.log(error);
     }
@@ -71,6 +76,10 @@ function WatchlaterpageContext({ children }) {
       setWatchLaterFn({
         type: "GET_WATCHLATER_VIDEOS",
         payload: response.data.watchlater,
+      });
+      Toast({
+        type: "success",
+        message: `video removed from watchlater `,
       });
     } catch (error) {
       console.log(error);

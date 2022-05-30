@@ -42,10 +42,6 @@ function LoginSignupContext({ children }) {
         email: email,
         password: password,
       });
-      console.log(
-        "🚀 ~ file: LoginSignupContext.js ~ line 43 ~ loginHandler ~ response",
-        response
-      );
       // saving the encodedToken in the localStorage
       dispatch({ type: "LOGINDATA", payload: response.data.foundUser });
       localStorage.getItem(`token`, response.data.encodedToken);

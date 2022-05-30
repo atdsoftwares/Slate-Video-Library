@@ -37,12 +37,8 @@ function SingleVideopageContext({ children }) {
     playlistBoxState: "none",
   });
 
-  const {
-    videoData,
-    inputState,
-    notesTakingBoxState,
-    playlistBoxState,
-  } = state;
+  const { videoData, inputState, notesTakingBoxState, playlistBoxState } =
+    state;
 
   // get single video complete data from url parameters
   async function getSingleVideosFn() {
