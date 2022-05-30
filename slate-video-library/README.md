@@ -8,20 +8,20 @@
 - [x] Like/Dislike
 - [x] Watch Later
 - [x] History
-- [ ] Authentication
-  - [ ] Sign-up
-  - [ ] Login
-  - [ ] Logout
+- [x] Authentication
+  - [x] Sign-up
+  - [x] Login
+  - [x] Logout
 
 ### Good to have (P1)[#](https://neog-lms.vercel.app/docs/prds/video-lib-app#good-to-have-p1)
 
-- [ ] Search Video
+- [x] Search Video
 - [x] Single Video Page
 - [x] Notes on a video
-- [ ] Filter Videos with Category
+- [x] Filter Videos with Category
 - [ ] Forget Password
-- [ ] Loading & Alerts
-- [ ] User Profile Page
+- [x] Loading & Alerts
+- [x] User Profile Page
 
 ### Can contain (P2)[#](https://neog-lms.vercel.app/docs/prds/video-lib-app#can-contain-p2)
 
