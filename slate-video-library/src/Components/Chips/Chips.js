@@ -9,8 +9,7 @@ function Chips() {
     <div className="chips-container">
       <input
         type="submit"
-        // className="chips"
-        className={isActive ? "chips2" : "chips"}
+        className="chips"
         placeholder="Technology"
         value="Technology"
         onClick={() =>
