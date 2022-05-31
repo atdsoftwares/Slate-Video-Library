@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useReducer, useState } from "react";
 import { v4 as uuid } from "uuid";
+import Toast from "../Toast/Toast";
 const notesContext = createContext();
 export const useNotesAppContext = () => useContext(notesContext);
 
@@ -16,11 +17,13 @@ function NotesAppContext({ children }) {
     ];
     setinputNotesData(inputNotesData1);
     setinputNotesTextValue("");
+    Toast({ type: "success", message: "new note added" });
   }
 
   function deleteNotesFn(_id) {
     const inputNotesData1 = inputNotesData.filter((f) => f._id !== _id);
     setinputNotesData(inputNotesData1);
+    Toast({ type: "success", message: "notes removed" });
   }
 
   function editNotesFn(_id) {

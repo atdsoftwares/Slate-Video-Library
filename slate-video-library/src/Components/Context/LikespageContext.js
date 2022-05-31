@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useContext, useReducer } from "react";
+import Toast from "../Toast/Toast";
 
 const likeContext = createContext();
 export const useLikeContext = () => useContext(likeContext);
@@ -33,6 +34,7 @@ function LikespageContext({ children }) {
         data: { video: videoData },
       });
       setLikesFn({ type: "ADD_TO_LIKES", payload: response.data.likes });
+      Toast({ type: "success", message: "added to likes" });
     } catch (error) {
       console.log(error);
     }
@@ -66,6 +68,7 @@ function LikespageContext({ children }) {
         type: "GET_LIKED_VIDEOS",
         payload: response.data.likes,
       });
+      Toast({ type: "success", message: "removed from likes" });
     } catch (error) {
       console.log(error);
     }

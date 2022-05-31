@@ -15,19 +15,20 @@ input.notes-app {
   margin-top: 6rem;
   position: absolute;
   top: 0rem;
-  right: 12rem;
+  right: 14rem;
 }
 button span.notesmi {
   margin: 0.2rem;
 }
 table {
-  font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 20rem;
+  position: relative;
+  right: 4rem;
 }
 th,
 td.notes-data {
-  width: 80%;
+  width: 50%;
 }
 td,
 th {
@@ -52,7 +53,7 @@ tr:nth-child(even) {
   color: var(--black-color);
   background-color: var(--white-color);
 }
-input.form-submit {
-  width: 25%;
+input[type="submit"].submit {
+  width: 20%;
   margin: 1rem;
 }

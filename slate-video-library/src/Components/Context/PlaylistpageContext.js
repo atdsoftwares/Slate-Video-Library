@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { createContext, useContext, useReducer, useState } from "react";
 import SingleVideopage from "../../Pages/SingleVideoPage/SingleVideopage";
+import Toast from "../Toast/Toast";
 import SingleVideopageContext, {
   useSingleVideoContext,
 } from "./SingleVideopageContext";
@@ -55,10 +56,12 @@ function PlaylistpageContext({ children }) {
           playlist: { playlistName: inputState },
         },
       });
+
       setPlaylistFn({
         type: "ADD_PLAYLISTS",
         payload: response.data.playlists,
       });
+      Toast({ type: "success", message: " playlist created" });
     } catch (error) {
       console.log(error);
     }
@@ -92,6 +95,7 @@ function PlaylistpageContext({ children }) {
         type: "ADD_PLAYLISTS",
         payload: response.data.playlists,
       });
+      Toast({ type: "success", message: " playlist removed" });
     } catch (error) {
       console.log(error);
     }
@@ -109,6 +113,10 @@ function PlaylistpageContext({ children }) {
       setPlaylistFn({
         type: "ADD_VIDEOS_TO_PLAYLISTS",
         payload: response.data.playlists,
+      });
+      Toast({
+        type: "success",
+        message: `video added into playlist ,${inputState}`,
       });
     } catch (error) {
       console.log(error);
@@ -143,6 +151,10 @@ function PlaylistpageContext({ children }) {
       setPlaylistFn({
         type: "GET_VIDEOS_FROM_PLAYLISTS",
         payload: response.data.playlist.videos,
+      });
+      Toast({
+        type: "success",
+        message: `video removed from playlist ,${inputState}`,
       });
     } catch (error) {
       console.log(error);

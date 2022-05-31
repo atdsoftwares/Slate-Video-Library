@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { createContext, useContext, useReducer } from "react";
+import Toast from "../Toast/Toast";
 
 const historyContext = createContext({});
 export const useHistoryContext = () => useContext(historyContext);
@@ -41,6 +42,7 @@ function HistorypageContext({ children }) {
         type: "ADD_TO_HISTORY",
         payload: response.data.history,
       });
+      Toast({ type: "success", message: "added to history" });
     } catch (error) {
       console.log(error);
     }
@@ -57,6 +59,7 @@ function HistorypageContext({ children }) {
         type: "GET_HISTORY",
         payload: response.data.history,
       });
+      Toast({ type: "success", message: "removed from history" });
     } catch (error) {
       console.log(error);
     }

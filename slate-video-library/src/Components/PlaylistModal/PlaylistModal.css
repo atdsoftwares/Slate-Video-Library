@@ -14,7 +14,7 @@
   padding: 1rem;
   opacity: 0.8;
 }
-input.navigation__input-inputtext {
+input[type="text"].navigation__input-inputtext {
   width: 100%;
   border: none;
   outline: none;
