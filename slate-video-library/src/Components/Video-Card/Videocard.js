@@ -10,10 +10,7 @@ function Videocard({ video }) {
   const { _id, title, videoUrl, creator_pic } = video;
   const { setHistoryFn } = useHistoryContext();
   const { videoData } = useSingleVideoContext();
-  console.log(
-    "🚀 ~ file: Videocard.js ~ line 13 ~ Videocard ~ videoData",
-    videoData
-  );
+
   return (
     <div>
       <div className="video__cards">

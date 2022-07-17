@@ -1,7 +1,9 @@
+import React from "react";
 import { useExplorePageContext } from "../../Context/IndexAllContext";
+import { Link } from "../../Utils/CustomUtils";
 import "./Chips.css";
 function Chips() {
-  const { dispatch, state } = useExplorePageContext();
+  const { dispatch } = useExplorePageContext();
 
   return (
     <div className="chips-container">
@@ -17,14 +19,27 @@ function Chips() {
             })
           }
         />
+
         <input
           type="submit"
           className="chips"
           placeholder="Technology"
-          value="Technology"
+          value="HTML"
           onClick={() =>
             dispatch({
-              type: "Technology",
+              type: "HTML",
+            })
+          }
+        />
+
+        <input
+          type="submit"
+          className="chips"
+          placeholder="Technology"
+          value="CSS"
+          onClick={() =>
+            dispatch({
+              type: "CSS",
             })
           }
         />
@@ -32,10 +47,10 @@ function Chips() {
           type="submit"
           className="chips"
           placeholder="Technology"
-          value="Tedx"
+          value="JS"
           onClick={() =>
             dispatch({
-              type: "Tedx",
+              type: "JS",
             })
           }
         />
@@ -43,10 +58,21 @@ function Chips() {
           type="submit"
           className="chips"
           placeholder="Technology"
-          value="Coding"
+          value="React"
           onClick={() =>
             dispatch({
-              type: "Coding",
+              type: "React",
+            })
+          }
+        />
+        <input
+          type="submit"
+          className="chips"
+          placeholder="Technology"
+          value="Others"
+          onClick={() =>
+            dispatch({
+              type: "Others",
             })
           }
         />

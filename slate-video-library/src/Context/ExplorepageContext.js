@@ -22,32 +22,61 @@ function ExplorepageContext({ children }) {
         return { ...state, category: action.payload };
       case "SEARCHBAR":
         return { ...state, search: action.payload };
-      case "Technology":
+      case "HTML":
         return {
           ...state,
           category: {
             ...state["category"],
-            Technology: !state.category.Technology,
+            HTML: !state.category.HTML,
           },
         };
 
-      case "Coding":
+      case "CSS":
         return {
           ...state,
           category: {
             ...state["category"],
-            Coding: !state.category.Coding,
+            CSS: !state.category.CSS,
           },
         };
 
-      case "Tedx":
+      case "JS":
         return {
           ...state,
           category: {
             ...state["category"],
-            Tedx: !state.category.Tedx,
+            JS: !state.category.JS,
           },
         };
+      case "React":
+        return {
+          ...state,
+          category: {
+            ...state["category"],
+            React: !state.category.React,
+          },
+        };
+      case "Others":
+        return {
+          ...state,
+          category: {
+            ...state["category"],
+            Others: !state.category.Others,
+          },
+        };
+      case "All": {
+        return {
+          ...state,
+          category: {
+            ...state["category"],
+            HTML: false,
+            CSS: false,
+            JS: false,
+            React: false,
+            Others: false,
+          },
+        };
+      }
       default:
         return state;
     }
@@ -57,13 +86,16 @@ function ExplorepageContext({ children }) {
     isLoading: false,
     search: "",
     category: {
-      Coding: false,
-      Technology: false,
-      Tedx: false,
+      HTML: false,
+      CSS: false,
+      JS: false,
+      React: false,
+      Others: false,
+      All: false,
     },
   });
 
-  const { category, search, videosdata, isLoading } = state;
+  const { category, search, videosdata } = state;
 
   useEffect(() => {
     dispatch({ type: "LOADINGSPINNER", payload: true });
@@ -73,18 +105,26 @@ function ExplorepageContext({ children }) {
   const sortByCategoryFn = (videosdata, category) => {
     const sortedproductdata = [...videosdata];
 
-    if (category.Technology) {
+    if (category.HTML) {
+      return sortedproductdata.filter((video) => video.category === "HTML");
+    }
+    if (category.CSS) {
+      return sortedproductdata.filter((video) => video.category === "CSS");
+    }
+    if (category.JS) {
+      return sortedproductdata.filter((video) => video.category === "JS");
+    }
+    if (category.React) {
+      return sortedproductdata.filter((video) => video.category === "React");
+    }
+    if (category.Others) {
+      return sortedproductdata.filter((video) => video.category === "Others");
+    }
+    if (category === "") {
       return sortedproductdata.filter(
-        (video) => video.category === "Technology"
+        (video) => video.category === "HTML" && "CSS" && "JS" && "Others"
       );
     }
-    if (category.Coding) {
-      return sortedproductdata.filter((video) => video.category === "Coding");
-    }
-    if (category.Tedx) {
-      return sortedproductdata.filter((video) => video.category === "Tedx");
-    }
-
     return sortedproductdata;
   };
 
@@ -106,7 +146,7 @@ function ExplorepageContext({ children }) {
   return (
     <div>
       <explorePage.Provider
-        value={{ state, dispatch, finalData, isActive, setActive, isLoading }}
+        value={{ state, dispatch, finalData, isActive, setActive, videosdata }}
       >
         {children}
       </explorePage.Provider>

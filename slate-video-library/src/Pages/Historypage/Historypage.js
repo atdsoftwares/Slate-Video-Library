@@ -36,7 +36,7 @@ function Historypage() {
         <div className="watchlater-container">
           <button
             className="btn btn-danger clearallhistory"
-            onClick={removeAllHistoryFn(setHistoryFn)}
+            onClick={() => removeAllHistoryFn(setHistoryFn)}
           >
             clear history
           </button>
