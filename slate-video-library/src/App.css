@@ -1,4 +1,4 @@
-@import "https://deploy-preview-13--agri-component.netlify.app/css/components.css";
+@import "https://slateui.netlify.app/css/components.css";
 
 * {
   scroll-behavior: smooth;
@@ -10,11 +10,14 @@ a {
 }
 
 :root {
-  --sky-blue-color: rgb(129, 129, 255);
   --white-color: rgb(255, 255, 255);
   --black-color: rgb(0, 0, 0);
-  --red-shade-color: rgb(255, 100, 100);
 }
 body {
-  /* overflow-y: hidden; */
+  background-color: #eaeaea;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  font-family: "Encode Sans", sans-serif;
+  letter-spacing: 0.5px;
 }

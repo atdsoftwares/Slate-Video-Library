@@ -1,15 +1,21 @@
 import React from "react";
-import Footer from "../../Components/Footer/Footer";
-import Header from "../../Components/Header/Header";
-import Sidebar from "../../Components/Sidebar/Sidebar";
-import SingleVideo from "../../Components/SingleVideo/SingleVideo";
+import {
+  Footer,
+  Header,
+  Sidebar,
+  SingleVideo,
+} from "../../Components/IndexAllComponents";
+
+import "./SingleVideopage.css";
 
 function SingleVideopage() {
   return (
     <div>
       <Header />
-      <Sidebar />
-      <SingleVideo />
+      <div className="sidebar-single-video">
+        <Sidebar />
+        <SingleVideo />
+      </div>
       <Footer />
     </div>
   );

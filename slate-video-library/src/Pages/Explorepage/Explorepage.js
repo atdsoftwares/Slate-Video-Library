@@ -1,29 +1,31 @@
-import React from "react";
-import Chips from "../../Components/Chips/Chips";
-import { useExplorePageContext } from "../../Components/Context/ExplorepageContext";
-import Footer from "../../Components/Footer/Footer";
-import Header from "../../Components/Header/Header";
-import Spinner from "../../Components/LaodingSpinner/Spinner";
-import Sidebar from "../../Components/Sidebar/Sidebar";
-import Videocard from "../../Components/Video-Card/Videocard";
+import {
+  Chips,
+  Footer,
+  Header,
+  Sidebar,
+  Spinner,
+  Videocard,
+} from "../../Components/IndexAllComponents";
+import { useExplorePageContext } from "../../Context/IndexAllContext";
 import "./Explorepage.css";
 function Explorepage() {
-  const { state, finalData } = useExplorePageContext();
-  const { isLoading } = state;
+  const { finalData, isLoading } = useExplorePageContext();
 
   return (
     <div>
       <Header />
-      <Sidebar />
-      <Chips />
-      <div className="explorepage-videos-style">
-        {isLoading ? (
-          <Spinner />
-        ) : (
-          finalData.map((video) => {
-            return <Videocard key={video._id} video={video} />;
-          })
-        )}
+      <div className="explorepage-data">
+        <Sidebar />
+        <Chips />
+        <div className="explorepage-videos-style">
+          {isLoading ? (
+            <Spinner />
+          ) : (
+            finalData.map((video) => {
+              return <Videocard key={video._id} video={video} />;
+            })
+          )}
+        </div>
       </div>
       <Footer />
     </div>

@@ -1,58 +1,16 @@
-:root {
-  /* Theme */
-  --primary-color: #1662f3;
-  --light-color: #d0dffc;
-  --dark-color: #283b70;
-  --regular-font: "Inter", sans-serif;
-}
-
-input[type="submit"].chips {
-  color: black;
-  font-size: 1rem;
-  border-radius: 100rem;
-  box-shadow: 0 0 0 2px var(--light-color);
-  background-color: transparent;
-  background-color: #689dff;
-  font-weight: bold;
-  transition: background-color 250ms ease, box-shadow 250ms ease;
-  margin-top: 5rem;
-  width: 15%;
-  height: 2rem;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  text-align: center;
-  cursor: pointer;
-}
-
-.chips:hover {
-  background-color: blue;
-  color: white;
-  box-shadow: 0 0 0 calc(2px + 0.25rem) var(--light-color);
-}
-
 .chips-container {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-  width: 50%;
-  margin-left: 12rem;
-}
-.input[type="submit"].chips2 {
-  color: black;
-  font-size: 1rem;
-  border-radius: 100rem;
-  box-shadow: 0 0 0 2px var(--light-color);
-  background-color: transparent;
-  background-color: red;
-  font-weight: bold;
-  transition: background-color 250ms ease, box-shadow 250ms ease;
+  width: 85%;
+  height: 4rem;
+  margin-left: 15rem;
   margin-top: 5rem;
-  width: 15%;
-  height: 2rem;
-  justify-content: center;
-  align-items: center;
+  box-shadow: #dbdbdb 0px 2px 8px 0px;
+}
+input[type="submit"].chips {
+  padding: 5px 10px;
+  border-radius: 50px;
+  width: auto;
+  margin: 5px;
+}
+.chips-data {
   display: flex;
-  text-align: center;
-  cursor: pointer;
 }

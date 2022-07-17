@@ -1,24 +1,18 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useLikeContext } from "../Context/LikespageContext";
-import { usePlaylistContext } from "../Context/PlaylistpageContext";
-import { useSingleVideoContext } from "../Context/SingleVideopageContext";
-import { useWatchLaterContext } from "../Context/WatchlaterpageContext";
-import NoteTaking from "../Note Taking/NoteTaking";
-import PlaylistModal from "../PlaylistModal/PlaylistModal";
+import {
+  useSingleVideoContext,
+  useWatchLaterContext,
+  useLikeContext,
+} from "../../Context/IndexAllContext";
+import { addToLikesFn } from "../../Services/LikesPageServices";
+import { addToWatchLaterVideosFn } from "../../Services/WatchLaterServices";
+import { useParams } from "../../Utils/CustomUtils";
+import { ModalPlaylist, NoteTaking } from "../IndexAllComponents";
 import "./SingleVideo.css";
 
 function SingleVideo() {
-  const {
-    videoData,
-    setVideoId,
-    dispatch,
-    toggleNotesApp,
-    togglePlaylistApp,
-  } = useSingleVideoContext();
-  const { addToWatchLaterVideosFn, setWatchLaterFn } = useWatchLaterContext();
-  const { setLikesFn, addToLikesFn } = useLikeContext();
+  const { videoData, setVideoId, toggleNotesApp } = useSingleVideoContext();
+  const { setWatchLaterFn } = useWatchLaterContext();
+  const { setLikesFn } = useLikeContext();
 
   const { _id } = useParams();
   setVideoId(_id);
@@ -41,7 +35,10 @@ function SingleVideo() {
           title="cratorspic"
           className="single-videopage-creatorpic"
         />
-        <h2> {videoData.title}</h2>
+        <div className="title-name-details">
+          <h4> {videoData.title}</h4>
+          <h4> {videoData.creator_name}</h4>
+        </div>
         <div className="single-video-page-buttons">
           <span
             class="material-icons singlevideomi"
@@ -55,18 +52,15 @@ function SingleVideo() {
           >
             watch_later
           </span>
-          <span
-            class="material-icons singlevideomi"
-            onClick={togglePlaylistApp}
-          >
-            playlist_add
+          <span class="material-icons singlevideomi">
+            <ModalPlaylist />
           </span>
           <span class="material-icons singlevideomi" onClick={toggleNotesApp}>
             create
           </span>
         </div>
       </div>
-      <PlaylistModal />
+
       <NoteTaking />
     </div>
   );

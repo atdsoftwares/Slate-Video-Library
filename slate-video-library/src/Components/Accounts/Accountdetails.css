@@ -17,7 +17,7 @@ table {
   font-family: arial, sans-serif;
   border-collapse: collapse;
   width: 80%;
-  margin-left: 25%;
+  margin-left: 15%;
   text-align: center;
   padding: 1rem;
   border: 1px solid black;
@@ -35,4 +35,12 @@ tr:nth-child(even) {
   background-color: #8a8c8f;
   color: black;
   font-size: 1rem;
+}
+table.table2 {
+  width: 100%;
+}
+
+h3.h3 {
+  margin: 2rem;
+  text-align: center;
 }

@@ -1,11 +1,11 @@
-import axios from "axios";
-import React, {
+import { getVideos } from "../Services/ExplorePageServices.js";
+import {
   createContext,
   useContext,
   useEffect,
   useReducer,
   useState,
-} from "react";
+} from "../Utils/CustomUtils.js";
 
 const explorePage = createContext();
 export const useExplorePageContext = () => useContext(explorePage);
@@ -63,27 +63,11 @@ function ExplorepageContext({ children }) {
     },
   });
 
-  const { category, search, videosdata } = state;
-  async function getVideos() {
-    dispatch({ type: "LOADINGSPINNER", payload: true });
-    try {
-      await axios({
-        method: "GET",
-        url: `/api/videos/`,
-      }).then((response) =>
-        dispatch({
-          type: "APIVIDEOSDATA",
-          payload: response.data.videos,
-        })
-      );
-      dispatch({ type: "LOADINGSPINNER", payload: false });
-    } catch (error) {
-      console.log(`something went wrong`, error);
-    }
-  }
+  const { category, search, videosdata, isLoading } = state;
+
   useEffect(() => {
     dispatch({ type: "LOADINGSPINNER", payload: true });
-    getVideos();
+    getVideos(dispatch);
   }, []);
   // categories filter
   const sortByCategoryFn = (videosdata, category) => {
@@ -117,17 +101,12 @@ function ExplorepageContext({ children }) {
   }
 
   const sortedData = sortByCategoryFn(videosdata, category);
-  console.log(
-    "🚀 ~ file: ExplorepageContext.js ~ line 110 ~ ExplorepageContext ~ sortedData",
-    sortedData
-  );
-
   const finalData = sortyBySearchFn(sortedData, search);
 
   return (
     <div>
       <explorePage.Provider
-        value={{ state, dispatch, finalData, isActive, setActive }}
+        value={{ state, dispatch, finalData, isActive, setActive, isLoading }}
       >
         {children}
       </explorePage.Provider>

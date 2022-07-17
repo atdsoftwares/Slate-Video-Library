@@ -1,54 +1,58 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { usePlaylistContext } from "../../Components/Context/PlaylistpageContext";
-import Footer from "../../Components/Footer/Footer";
-import Header from "../../Components/Header/Header";
-import Sidebar from "../../Components/Sidebar/Sidebar";
-import SmallVideoCards from "../../Components/SmallVideoCards/SmallVideoCards";
+import {
+  Footer,
+  Header,
+  Sidebar,
+  SmallVideoCards,
+} from "../../Components/IndexAllComponents";
+import { usePlaylistContext } from "../../Context/IndexAllContext";
+import {
+  deleteVideosInsidePlaylistFn,
+  getVideosFromPlaylistsFn,
+} from "../../Services/PlaylistPageServices";
+import { useEffect, useParams, useState } from "../../Utils/CustomUtils";
 
 function PlaylistViewpage() {
-  const {
-    setPlaylistId,
-    getVideosFromPlaylists,
-    getVideosFromPlaylistsFn,
-    deleteVideosInsidePlaylistFn,
-  } = usePlaylistContext();
-
-  const params = useParams();
-  setPlaylistId(params);
-  console.log(params);
-
+  const { getVideosFromPlaylists, setPlaylistFn } = usePlaylistContext();
+  const playlistId = useParams();
   useEffect(() => {
-    getVideosFromPlaylistsFn();
+    getVideosFromPlaylistsFn(playlistId, setPlaylistFn);
   }, []);
 
   return (
     <div>
       <Header />
-      <Sidebar />
+      <div
+        className="likes-page-sidebar"
+        style={{ display: "flex", marginLeft: "5rem" }}
+      >
+        <Sidebar />
 
-      <div className="watchlater-container">
-        {getVideosFromPlaylists.length <= 0 ? (
-          <h3 className="watchlaterpage-title">
-            THERE ARE NO VIDEOS IN PLAYLIST
-          </h3>
-        ) : (
-          getVideosFromPlaylists.map((playlistData) => (
-            <div className="watchlaterdata">
-              <SmallVideoCards props={playlistData.videoUrl} />
-              <span
-                className="material-icons watchlatermi"
-                onClick={() =>
-                  deleteVideosInsidePlaylistFn(params, playlistData._id)
-                }
-              >
-                delete
-              </span>
-            </div>
-          ))
-        )}
+        <div className="watchlater-container">
+          {getVideosFromPlaylists.length <= 0 ? (
+            <h3 className="watchlaterpage-title">
+              THERE ARE NO VIDEOS IN PLAYLIST
+            </h3>
+          ) : (
+            getVideosFromPlaylists.map((playlistData) => (
+              <div className="watchlaterdata">
+                <SmallVideoCards props={playlistData.videoUrl} />
+                <span
+                  className="material-icons watchlatermi"
+                  onClick={() =>
+                    deleteVideosInsidePlaylistFn(
+                      playlistId,
+                      playlistData._id,
+                      setPlaylistFn
+                    )
+                  }
+                >
+                  delete
+                </span>
+              </div>
+            ))
+          )}
+        </div>
       </div>
-
       <Footer />
     </div>
   );

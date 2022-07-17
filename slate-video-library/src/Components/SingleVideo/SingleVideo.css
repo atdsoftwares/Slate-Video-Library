@@ -1,22 +1,20 @@
 .single-video-card {
   display: flex;
-  margin-left: 10rem;
   margin-top: 6rem;
   justify-content: center;
-  align-items: center;
-  height: 25rem;
-  width: 50%;
+  align-items: flex-start;
+  height: 50vh;
+  width: 100vh;
   background-color: var(--black-color);
 }
 .single-video-details {
   display: flex;
-  margin-left: 10rem;
-  justify-content: space-between;
+  height: 10rem;
+  justify-content: space-around;
+  padding: 1rem;
   align-items: center;
-  height: 5rem;
-  padding: 2rem;
-  width: 50%;
-  background-color: var(--sky-blue-color);
+  width: 100%;
+  box-shadow: 0 0.1rem 0.3rem rgba(0, 0, 0, 0.5);
 }
 .single-video-page-buttons {
   display: flex;
@@ -25,8 +23,8 @@
   width: 38%;
   border: 1px solid var(--white-color);
   height: 2.5rem;
-  color: var(--white-color);
-  background-color: var(--sky-blue-color);
+  /* color: #ebebeb; */
+  background-color: #ebebeb;
   transition: transform 100ms ease-in-out;
 }
 .single-video-page-buttons:hover {
@@ -44,4 +42,11 @@ span.singlevideomi:hover {
 #IFRAME_ID {
   height: 100%;
   width: 100%;
+  border: none;
+}
+.title-name-details {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
 }

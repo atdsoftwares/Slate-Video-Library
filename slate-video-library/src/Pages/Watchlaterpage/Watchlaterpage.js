@@ -1,45 +1,52 @@
-import React, { useEffect } from "react";
-import { useSingleVideoContext } from "../../Components/Context/SingleVideopageContext";
-import { useWatchLaterContext } from "../../Components/Context/WatchlaterpageContext";
-import Footer from "../../Components/Footer/Footer";
-import Header from "../../Components/Header/Header";
-import Sidebar from "../../Components/Sidebar/Sidebar";
-import SmallVideoCards from "../../Components/SmallVideoCards/SmallVideoCards";
+import { useEffect } from "../../Utils/CustomUtils";
+import { useWatchLaterContext } from "../../Context/IndexAllContext";
 import "./Watchlaterpage.css";
+import {
+  Footer,
+  Header,
+  Sidebar,
+  SmallVideoCards,
+} from "../../Components/IndexAllComponents";
+import {
+  getWatchLaterVideosFn,
+  removeWatchLaterVideosFn,
+} from "../../Services/WatchLaterServices";
 function Watchlaterpage() {
-  const {
-    getWatchLaterVideos,
-    getWatchLaterVideosFn,
-    removeWatchLaterVideosFn,
-  } = useWatchLaterContext();
+  const { getWatchLaterVideos, setWatchLaterFn } = useWatchLaterContext();
 
   useEffect(() => {
-    getWatchLaterVideosFn();
+    getWatchLaterVideosFn(setWatchLaterFn);
   }, []);
 
   return (
     <div>
       <Header />
-      <Sidebar />
-      <h1 className="historypage-title"> WATCHLATER PAGE</h1>
-      <div className="watchlater-container">
-        {getWatchLaterVideos.length <= 0 ? (
-          <h3 className="watchlaterpage-title">
-            THERE ARE NO WATCHLATER VIDEOS{" "}
-          </h3>
-        ) : (
-          getWatchLaterVideos.map((watch_later) => (
-            <div className="watchlaterdata">
-              <SmallVideoCards props={watch_later.videoUrl} />
-              <span
-                className="material-icons watchlatermi"
-                onClick={(_id) => removeWatchLaterVideosFn(watch_later._id)}
-              >
-                delete
-              </span>
-            </div>
-          ))
-        )}
+      <div
+        className="likes-page-sidebar"
+        style={{ display: "flex", marginLeft: "15rem" }}
+      >
+        <Sidebar />
+        <div className="watchlater-container">
+          {getWatchLaterVideos.length <= 0 ? (
+            <h3 className="watchlaterpage-title">
+              THERE ARE NO WATCHLATER VIDEOS{" "}
+            </h3>
+          ) : (
+            getWatchLaterVideos.map((watch_later) => (
+              <div className="watchlaterdata">
+                <SmallVideoCards props={watch_later.videoUrl} />
+                <span
+                  className="material-icons watchlatermi"
+                  onClick={(_id) =>
+                    removeWatchLaterVideosFn(watch_later._id, setWatchLaterFn)
+                  }
+                >
+                  delete
+                </span>
+              </div>
+            ))
+          )}
+        </div>
       </div>
       <Footer />
     </div>
