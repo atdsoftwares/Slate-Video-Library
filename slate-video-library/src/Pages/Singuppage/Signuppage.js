@@ -1,13 +1,22 @@
 import React from "react";
-import Footer from "../../Components/Footer/Footer";
-import Header from "../../Components/Header/Header";
-import Signupinputs from "../../Components/Login-Signup-Inputs/Signupinputs";
+import {
+  Footer,
+  Header,
+  Sidebar,
+  Signupinputs,
+} from "../../Components/IndexAllComponents";
 
 function Signuppage() {
   return (
     <div>
       <Header />
-      <Signupinputs />
+      <div
+        className="signup-page-sidebar"
+        style={{ display: "flex", marginLeft: "25rem" }}
+      >
+        <Sidebar />
+        <Signupinputs />
+      </div>
       <Footer />
     </div>
   );

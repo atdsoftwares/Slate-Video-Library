@@ -24,7 +24,7 @@ table {
   border-collapse: collapse;
   width: 20rem;
   position: relative;
-  right: 4rem;
+  right: 5rem;
 }
 th,
 td.notes-data {
@@ -41,8 +41,8 @@ tr:nth-child(even) {
   background-color: #dddddd;
 }
 .btns {
-  height: 2rem;
-  width: 2rem;
+  height: 2.4rem;
+  width: 2.4rem;
   border-radius: 50%;
   background-color: var(--black-color);
   color: var(--white-color);

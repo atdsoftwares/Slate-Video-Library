@@ -1,11 +1,11 @@
-import axios from "axios";
-import React, {
+import { getVideos } from "../Services/ExplorePageServices.js";
+import {
   createContext,
   useContext,
   useEffect,
   useReducer,
   useState,
-} from "react";
+} from "../Utils/CustomUtils.js";
 
 const explorePage = createContext();
 export const useExplorePageContext = () => useContext(explorePage);
@@ -22,32 +22,61 @@ function ExplorepageContext({ children }) {
         return { ...state, category: action.payload };
       case "SEARCHBAR":
         return { ...state, search: action.payload };
-      case "Technology":
+      case "HTML":
         return {
           ...state,
           category: {
             ...state["category"],
-            Technology: !state.category.Technology,
+            HTML: !state.category.HTML,
           },
         };
 
-      case "Coding":
+      case "CSS":
         return {
           ...state,
           category: {
             ...state["category"],
-            Coding: !state.category.Coding,
+            CSS: !state.category.CSS,
           },
         };
 
-      case "Tedx":
+      case "JS":
         return {
           ...state,
           category: {
             ...state["category"],
-            Tedx: !state.category.Tedx,
+            JS: !state.category.JS,
           },
         };
+      case "React":
+        return {
+          ...state,
+          category: {
+            ...state["category"],
+            React: !state.category.React,
+          },
+        };
+      case "Others":
+        return {
+          ...state,
+          category: {
+            ...state["category"],
+            Others: !state.category.Others,
+          },
+        };
+      case "All": {
+        return {
+          ...state,
+          category: {
+            ...state["category"],
+            HTML: false,
+            CSS: false,
+            JS: false,
+            React: false,
+            Others: false,
+          },
+        };
+      }
       default:
         return state;
     }
@@ -57,50 +86,45 @@ function ExplorepageContext({ children }) {
     isLoading: false,
     search: "",
     category: {
-      Coding: false,
-      Technology: false,
-      Tedx: false,
+      HTML: false,
+      CSS: false,
+      JS: false,
+      React: false,
+      Others: false,
+      All: false,
     },
   });
 
   const { category, search, videosdata } = state;
-  async function getVideos() {
-    dispatch({ type: "LOADINGSPINNER", payload: true });
-    try {
-      await axios({
-        method: "GET",
-        url: `/api/videos/`,
-      }).then((response) =>
-        dispatch({
-          type: "APIVIDEOSDATA",
-          payload: response.data.videos,
-        })
-      );
-      dispatch({ type: "LOADINGSPINNER", payload: false });
-    } catch (error) {
-      console.log(`something went wrong`, error);
-    }
-  }
+
   useEffect(() => {
     dispatch({ type: "LOADINGSPINNER", payload: true });
-    getVideos();
+    getVideos(dispatch);
   }, []);
   // categories filter
   const sortByCategoryFn = (videosdata, category) => {
     const sortedproductdata = [...videosdata];
 
-    if (category.Technology) {
+    if (category.HTML) {
+      return sortedproductdata.filter((video) => video.category === "HTML");
+    }
+    if (category.CSS) {
+      return sortedproductdata.filter((video) => video.category === "CSS");
+    }
+    if (category.JS) {
+      return sortedproductdata.filter((video) => video.category === "JS");
+    }
+    if (category.React) {
+      return sortedproductdata.filter((video) => video.category === "React");
+    }
+    if (category.Others) {
+      return sortedproductdata.filter((video) => video.category === "Others");
+    }
+    if (category === "") {
       return sortedproductdata.filter(
-        (video) => video.category === "Technology"
+        (video) => video.category === "HTML" && "CSS" && "JS" && "Others"
       );
     }
-    if (category.Coding) {
-      return sortedproductdata.filter((video) => video.category === "Coding");
-    }
-    if (category.Tedx) {
-      return sortedproductdata.filter((video) => video.category === "Tedx");
-    }
-
     return sortedproductdata;
   };
 
@@ -117,17 +141,12 @@ function ExplorepageContext({ children }) {
   }
 
   const sortedData = sortByCategoryFn(videosdata, category);
-  console.log(
-    "🚀 ~ file: ExplorepageContext.js ~ line 110 ~ ExplorepageContext ~ sortedData",
-    sortedData
-  );
-
   const finalData = sortyBySearchFn(sortedData, search);
 
   return (
     <div>
       <explorePage.Provider
-        value={{ state, dispatch, finalData, isActive, setActive }}
+        value={{ state, dispatch, finalData, isActive, setActive, videosdata }}
       >
         {children}
       </explorePage.Provider>

@@ -1,63 +1,61 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Videocard from "../Video-Card/Videocard";
+import { NavLink as Link, React } from "react-router-dom";
 
 import "./Sidebar.css";
 function Sidebar() {
   return (
     <div>
       <aside className="aside">
-        <div className="home">
-          <Link to="/">
+        <Link to="/">
+          <div className="home">
             <span className="material-icons sidebarmi" title="Home">
               home
             </span>
-          </Link>
-          Home
-        </div>
+            Home
+          </div>
+        </Link>
 
-        <div className="explore">
-          <Link to="/explore">
+        <Link to="/explore">
+          <div className="explore">
             <span className="material-icons sidebarmi" title="Explore">
               explore
             </span>{" "}
-          </Link>
-          Explore
-        </div>
-        <div className="playlists">
-          <Link to="/playlists">
+            Explore
+          </div>
+        </Link>
+        <Link to="/playlists">
+          <div className="playlists">
             <span className="material-icons sidebarmi" title="Playlists">
               queue
             </span>{" "}
-          </Link>
-          Playlists
-        </div>
+            Playlists
+          </div>
+        </Link>
 
-        <div className="likes">
-          <Link to="/likes">
+        <Link to="/likes">
+          <div className="likes">
             <span className="material-icons sidebarmi" title="Liked Video">
               thumb_up
             </span>{" "}
-          </Link>
-          Likes
-        </div>
+            Likes
+          </div>
+        </Link>
 
-        <div className="watchlater">
-          <Link to="/watchlater">
+        <Link to="/watchlater">
+          <div className="watchlater">
             <span className="material-icons sidebarmi" title="History">
               watch_later
             </span>{" "}
-          </Link>
-          Watch Later
-        </div>
-        <div className="history">
-          <Link to="/history">
+            Watch Later
+          </div>
+        </Link>
+        <Link to="/history">
+          <div className="history">
             <span className="material-icons sidebarmi" title="History">
               history
             </span>{" "}
-          </Link>
-          History
-        </div>
+            History
+          </div>
+        </Link>
       </aside>
     </div>
   );

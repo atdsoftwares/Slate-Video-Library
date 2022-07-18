@@ -1,6 +1,9 @@
-import React, { useState } from "react";
-import { useNotesAppContext } from "../Context/NotesAppContext";
-import { useSingleVideoContext } from "../Context/SingleVideopageContext";
+import React from "react";
+import {
+  useNotesAppContext,
+  useSingleVideoContext,
+} from "../../Context/IndexAllContext";
+
 import "./NoteTaking.css";
 function NoteTaking() {
   const { notesTakingBoxState } = useSingleVideoContext();

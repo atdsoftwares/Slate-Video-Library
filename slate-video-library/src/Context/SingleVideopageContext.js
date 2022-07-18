@@ -1,19 +1,16 @@
-import axios from "axios";
-import React, {
+import {
   createContext,
   useContext,
   useEffect,
   useReducer,
   useState,
-} from "react";
+} from "../Utils/CustomUtils";
+import { getSingleVideosFn } from "../Services/SingleVideoPageServices";
 
 const singleVideoContext = createContext();
 export const useSingleVideoContext = () => useContext(singleVideoContext);
 
 function SingleVideopageContext({ children }) {
-  // const token = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiJlMzIzZmY2MC1hMTUzLTQ0MTYtYmEyNS0zNDQ0ZGI1NjliOWMiLCJlbWFpbCI6ImFkYXJzaGJhbGlrYUBnbWFpbC5jb20ifQ._-fah2UEuueLmRHHl5uV4CYhiQdODX6neUkGbfTvtFM`;
-  // localStorage.setItem("token", token);
-
   const [videoId, setVideoId] = useState();
 
   function reducerFn(state, action) {
@@ -40,22 +37,8 @@ function SingleVideopageContext({ children }) {
   const { videoData, inputState, notesTakingBoxState, playlistBoxState } =
     state;
 
-  // get single video complete data from url parameters
-  async function getSingleVideosFn() {
-    try {
-      await axios.get(`/api/video/${videoId}`).then((response) =>
-        dispatch({
-          type: "SINGLEVIDEODATA",
-          payload: response.data.video,
-        })
-      );
-    } catch (error) {
-      console.log(`something went wrong`, error);
-    }
-  }
-
   useEffect(() => {
-    getSingleVideosFn();
+    getSingleVideosFn(videoId, dispatch);
   }, [videoId]);
 
   // toggle notes app

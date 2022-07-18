@@ -1,18 +1,19 @@
-import React from "react";
-import { ToastContainer } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 import App from "./App";
-import ExplorepageContext from "./Components/Context/ExplorepageContext";
-import HistorypageContext from "./Components/Context/HistorypageContext";
-import LikespageContext from "./Components/Context/LikespageContext";
-import LoginSignupContext from "./Components/Context/LoginSignupContext";
-import NotesAppContext from "./Components/Context/NotesAppContext";
-import PlaylistpageContext from "./Components/Context/PlaylistpageContext";
-import SingleVideopageContext from "./Components/Context/SingleVideopageContext";
-import WatchlaterpageContext from "./Components/Context/WatchlaterpageContext";
-
+import {
+  ExplorepageContext,
+  SingleVideopageContext,
+  PlaylistpageContext,
+  LikespageContext,
+  WatchlaterpageContext,
+  HistorypageContext,
+  NotesAppContext,
+  LoginSignupContext,
+} from "./Context/CoreContextFiles";
 function Pagestructure() {
   return (
     <div>
+      <Toaster position="top-center" reverseOrder={false} />
       <ExplorepageContext>
         <SingleVideopageContext>
           <PlaylistpageContext>

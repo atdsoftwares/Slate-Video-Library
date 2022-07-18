@@ -1,13 +1,21 @@
-import React from "react";
-import Accountdetails from "../../Components/Accounts/Accountdetails";
-import Footer from "../../Components/Footer/Footer";
-import Header from "../../Components/Header/Header";
+import {
+  Accountdetails,
+  Footer,
+  Header,
+  Sidebar,
+} from "../../Components/IndexAllComponents";
 
 function Accountpage() {
   return (
     <div>
       <Header />
-      <Accountdetails />
+      <div
+        className="account-page-sidebar"
+        style={{ display: "flex", marginLeft: "25rem" }}
+      >
+        <Sidebar />
+        <Accountdetails />
+      </div>
       <Footer />
     </div>
   );

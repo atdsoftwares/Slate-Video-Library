@@ -1,10 +1,11 @@
 import React from "react";
-import Chips from "../../Components/Chips/Chips";
-import Footer from "../../Components/Footer/Footer";
-import Header from "../../Components/Header/Header";
-import Hero from "../../Components/Hero/Hero";
-import Sidebar from "../../Components/Sidebar/Sidebar";
-import Videocard from "../../Components/Video-Card/Videocard";
+import {
+  Footer,
+  Header,
+  Hero,
+  Sidebar,
+} from "../../Components/IndexAllComponents";
+
 import "./Homepage.css";
 function Homepage() {
   return (

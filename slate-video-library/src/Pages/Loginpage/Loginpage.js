@@ -1,13 +1,23 @@
 import React from "react";
-import Footer from "../../Components/Footer/Footer";
-import Header from "../../Components/Header/Header";
-import Logininputs from "../../Components/Login-Signup-Inputs/Logininputs";
+import {
+  Footer,
+  Header,
+  Logininputs,
+  Sidebar,
+} from "../../Components/IndexAllComponents";
 
+import "./Loginpage.css";
 function Loginpage() {
   return (
     <div>
       <Header />
-      <Logininputs />
+      <div
+        className="login-page-sidebar"
+        style={{ display: "flex", marginLeft: "25rem" }}
+      >
+        <Sidebar />
+        <Logininputs />
+      </div>
       <Footer />
     </div>
   );

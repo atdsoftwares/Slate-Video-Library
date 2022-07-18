@@ -1,19 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import Loginpage from "../../Pages/Loginpage/Loginpage";
-import { useExplorePageContext } from "../Context/ExplorepageContext";
-import { useLoginSignupContext } from "../Context/LoginSignupContext";
+import { Link, React } from "react-router-dom";
+import { useExplorePageContext } from "../../Context/IndexAllContext";
 import "./Header.css";
 function Header() {
-  const { logoutHandler, loginHandler } = useLoginSignupContext();
-  const { dispatch, state } = useExplorePageContext();
+  const { dispatch } = useExplorePageContext();
   const token = localStorage.getItem("token");
   return (
     <div>
       <nav class="navigation-menu">
         <div class="navigation__left">
           <Link to="/">
-            <div class="navigation__logo">Agri UI</div>
+            <div class="navigation__logo">
+              <span class="material-icons">skip_previous</span>
+              Slate
+              <span class="material-icons">play_circle</span>
+              Video
+              <span class="material-icons">skip_next</span>
+            </div>
           </Link>
         </div>
         <input
@@ -25,21 +27,16 @@ function Header() {
           }
         />
         <div class="navigation__right">
+          <span class="material-icons navigationmi">dark_mode</span>
           {!token ? (
             <Link to="/login">
-              <button className="btn btn-danger">Login</button>
+              <span class="material-icons navigationmi">login</span>
             </Link>
           ) : (
-            <Link to="/login">
-              <button className="btn btn-danger" onClick={logoutHandler}>
-                Logout
-              </button>
+            <Link to="/accounts">
+              <span class="material-icons navigationmi">account_circle</span>
             </Link>
           )}
-
-          <Link to="/accounts">
-            <span class="material-icons navigationmi"> account_circle</span>
-          </Link>
         </div>
       </nav>
     </div>
