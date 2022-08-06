@@ -5,12 +5,10 @@ export const logoutHandler = () => {
   toast.success("Logout success!.");
 };
 
-export const signUpHandler = async (e, name, number, email, password) => {
-  e.preventDefault();
+export const signUpHandler = async (name, email, password) => {
   try {
     const response = await axios.post(`/api/auth/signup`, {
       name: name,
-      number: number,
       email: email,
       password: password,
     });
@@ -22,8 +20,7 @@ export const signUpHandler = async (e, name, number, email, password) => {
   }
 };
 
-export const loginHandler = async (e, email, password, dispatch) => {
-  e.preventDefault();
+export const loginHandler = async (email, password, dispatch) => {
   try {
     const response = await axios.post(`/api/auth/login`, {
       email: email,

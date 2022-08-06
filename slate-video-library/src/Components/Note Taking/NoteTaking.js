@@ -34,7 +34,7 @@ function NoteTaking() {
           required
           placeholder="take notes "
         />
-        <input type="submit" class="submit" />
+        <input type="submit" class="submit-notes" />
       </form>
       <div>
         <div>

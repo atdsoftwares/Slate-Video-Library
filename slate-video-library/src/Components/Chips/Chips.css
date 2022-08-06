@@ -6,7 +6,7 @@
   box-shadow: #dbdbdb 0px 2px 8px 0px;
 }
 input[type="submit"].chips {
-  padding: 3px 5px;
+  padding: 3px 10px;
   border-radius: 50px;
   width: auto;
   margin: 8px;
@@ -14,4 +14,8 @@ input[type="submit"].chips {
 }
 .chips-data {
   display: flex;
+}
+input[type="submit"]:focus {
+  outline: 2px solid gray;
+  background-color: orange; /* oranges! yey */
 }

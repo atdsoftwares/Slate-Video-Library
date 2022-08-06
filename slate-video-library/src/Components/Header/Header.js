@@ -10,11 +10,11 @@ function Header() {
         <div class="navigation__left">
           <Link to="/">
             <div class="navigation__logo">
-              <span class="material-icons">skip_previous</span>
-              Slate
-              <span class="material-icons">play_circle</span>
-              Video
-              <span class="material-icons">skip_next</span>
+              <img
+                src="https://img.icons8.com/parakeet/48/000000/experimental-internet-parakeet.png"
+                alt="logo"
+              />{" "}
+              Slate-Videos
             </div>
           </Link>
         </div>

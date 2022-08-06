@@ -1,6 +1,5 @@
 import React from "react";
 import { useExplorePageContext } from "../../Context/IndexAllContext";
-import { Link } from "../../Utils/CustomUtils";
 import "./Chips.css";
 function Chips() {
   const { dispatch } = useExplorePageContext();

@@ -12,6 +12,7 @@ export const addToLikesFn = async (videoData, setLikesFn) => {
     toast.success("Video added to Likes successfully");
   } catch (error) {
     console.log(error);
+    toast.error("login first");
   }
 };
 

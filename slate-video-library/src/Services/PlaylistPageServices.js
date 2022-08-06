@@ -19,6 +19,7 @@ export async function makePlaylistFn(setPlaylistFn, inputState) {
     toast.success("Playlist created successfully");
   } catch (error) {
     console.log(error);
+    toast.error("login first");
   }
 }
 
@@ -76,6 +77,7 @@ export async function addVideosIntoPlaylistFn(_id, data, setPlaylistFn) {
     );
   } catch (error) {
     console.log(error);
+    toast.error("login first");
   }
 }
 // get videos from playlists
