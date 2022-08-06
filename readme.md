@@ -4,7 +4,7 @@
 
 ## Features
 
-- Landing page with a list of featured video categories
+- Homepage 
 - Video Listing page
 - Like/dislike a video
 - Playlist Management
