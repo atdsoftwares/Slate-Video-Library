@@ -1,4 +1,4 @@
-# CodePlay - Video Library
+# Slate Video Library
 
 [Slate Video Library](https://slate-video-app.netlify.app/) - A Video Library for Coding Tutorials
 
