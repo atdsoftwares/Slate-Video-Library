@@ -1,5 +1,6 @@
 import {
   createContext,
+  toast,
   useContext,
   useEffect,
   useReducer,
@@ -43,10 +44,13 @@ function SingleVideopageContext({ children }) {
 
   // toggle notes app
   const toggleNotesApp = () => {
-    dispatch({
-      type: "NOTESTAKINGBOXSTATE",
-      payload: notesTakingBoxState === "none" ? "block" : "none",
-    });
+    const token = localStorage.getItem("token");
+    token
+      ? dispatch({
+          type: "NOTESTAKINGBOXSTATE",
+          payload: notesTakingBoxState === "none" ? "block" : "none",
+        })
+      : toast.error(`Login First`);
   };
 
   // toggle playlist app

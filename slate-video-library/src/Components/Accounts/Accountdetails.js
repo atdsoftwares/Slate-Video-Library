@@ -2,18 +2,23 @@ import { React, useNavigate } from "../../Utils/CustomUtils";
 import {
   useLoginSignupContext,
   useNotesAppContext,
+  usePlaylistContext,
+  useWatchLaterContext,
 } from "../../Context/IndexAllContext";
 import { logoutHandler } from "../../Services/LoginSignUpPageServices";
 
 import "./Accountdetails.css";
 function Accountdetails() {
   const { loginData } = useLoginSignupContext();
-  const { _id, email, name, number } = loginData;
-  const { inputNotesData, deleteNotesFn, editNotesFn } = useNotesAppContext();
+  const { addToPlaylists } = usePlaylistContext();
+  const { getWatchLaterVideos } = useWatchLaterContext();
+  const { email, name } = loginData;
+  const { inputNotesData, deleteNotesFn } = useNotesAppContext();
   const navigate = useNavigate();
   function logOutUserFromApp() {
+    window.location.reload();
     logoutHandler();
-    navigate("/");
+    navigate("/login");
   }
 
   return (
@@ -21,25 +26,21 @@ function Accountdetails() {
       <h1>Account Details </h1>
       <table className="table">
         <tr>
-          <th>_id</th>
           <th>Name</th>
           <th>Email</th>
-          <th>Number</th>
           <th>Watchlater</th>
           <th>Playlists</th>
           <th>Notes</th>
           <th>LogOut</th>
         </tr>
         <tr>
-          <td>{_id}</td>
           <td>{name}</td>
           <td> {email}</td>
-          <td>{number}</td>
-          <td>0</td>
-          <td>0</td>
+          <td>{getWatchLaterVideos && getWatchLaterVideos.length}</td>
+          <td>{addToPlaylists && addToPlaylists.length}</td>
           <td>{inputNotesData.length}</td>
           <td>
-            <button className="btn btn-primary" onClick={logOutUserFromApp}>
+            <button className="btn btn-danger" onClick={logOutUserFromApp}>
               Logout
             </button>
           </td>
@@ -51,7 +52,7 @@ function Accountdetails() {
         <tr>
           <th> Notes Id</th>
           <th> Notes Title</th>
-          <th> Action Button</th>
+          <th> Action</th>
         </tr>
 
         {inputNotesData.map((notes) => (
@@ -67,7 +68,7 @@ function Accountdetails() {
                 >
                   delete
                 </span>
-                <span className="material-icons">edit</span>
+                {/* <span className="material-icons">edit</span> */}
               </div>
             </td>
           </tr>

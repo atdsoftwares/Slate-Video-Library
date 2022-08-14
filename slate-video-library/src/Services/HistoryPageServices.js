@@ -14,6 +14,9 @@ export const addToHistoryFn = async (videoData, setHistoryFn) => {
     });
   } catch (error) {
     console.log(error);
+    toast.error(
+      `You could see this video but it can't be addded into History until logged in!`
+    );
   }
 };
 

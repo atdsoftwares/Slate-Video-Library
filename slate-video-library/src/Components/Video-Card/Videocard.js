@@ -16,7 +16,7 @@ function Videocard({ video }) {
       <div className="video__cards">
         <div class="card-wrapper video-card">
           <div>
-            <iframe class="iframe-video" src={videoUrl} title="video"></iframe>
+            <embed class="iframe-video" src={videoUrl} title="video"></embed>
           </div>
           <Link to={`/explore/${_id}`}>
             <div className="video__cards-details">

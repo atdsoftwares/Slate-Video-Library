@@ -7,7 +7,6 @@ function LoginSignupContext({ children }) {
   const [state, dispatch] = useReducer(reducerFn, {
     name: "",
     email: "",
-    number: "",
     password: "",
     loginData: [],
   });
@@ -17,8 +16,6 @@ function LoginSignupContext({ children }) {
         return { ...state, name: action.payload };
       case "EMAIL":
         return { ...state, email: action.payload };
-      case "NUMBER":
-        return { ...state, number: action.payload };
       case "PASSWORD":
         return { ...state, password: action.payload };
       case "LOGINDATA":
@@ -29,7 +26,7 @@ function LoginSignupContext({ children }) {
     }
   }
 
-  const { name, email, password, number, loginData } = state;
+  const { name, email, password, loginData } = state;
 
   return (
     <div>
@@ -40,7 +37,6 @@ function LoginSignupContext({ children }) {
           name,
           email,
           password,
-          number,
           loginData,
         }}
       >

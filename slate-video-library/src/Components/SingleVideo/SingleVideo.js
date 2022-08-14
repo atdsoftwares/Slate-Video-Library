@@ -20,13 +20,13 @@ function SingleVideo() {
   return (
     <div>
       <div className="single-video-card">
-        <iframe
+        <embed
           id="IFRAME_ID"
           className="video__cards-iframe-videos"
           title=" videos"
           alt="videodata"
           src={videoData.videoUrl}
-        ></iframe>
+        ></embed>
       </div>
       <div className="single-video-details">
         <img

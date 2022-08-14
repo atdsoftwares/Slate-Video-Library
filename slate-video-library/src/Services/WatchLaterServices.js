@@ -17,6 +17,7 @@ export const addToWatchLaterVideosFn = async (videoData, setWatchLaterFn) => {
     toast.success("Video added to Watch Later!");
   } catch (error) {
     console.log(error);
+    toast.error("login first");
   }
 };
 
