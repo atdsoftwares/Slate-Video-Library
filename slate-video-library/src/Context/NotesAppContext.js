@@ -1,5 +1,6 @@
 import React, {
   createContext,
+  toast,
   useContext,
   useState,
   uuid,
@@ -21,13 +22,13 @@ function NotesAppContext({ children }) {
     ];
     setinputNotesData(inputNotesData1);
     setinputNotesTextValue("");
-    // Toast({ type: "success", message: "new note added" });
+    toast.success("new note added");
   }
 
   function deleteNotesFn(_id) {
     const inputNotesData1 = inputNotesData.filter((f) => f._id !== _id);
     setinputNotesData(inputNotesData1);
-    // Toast({ type: "success", message: "notes removed" });
+    toast.success("Note Removed");
   }
 
   function editNotesFn(_id) {

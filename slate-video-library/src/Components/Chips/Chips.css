@@ -1,21 +1,22 @@
 .chips-container {
-  width: 85%;
-  height: 4rem;
+  width: 83%;
   margin-left: 15rem;
   margin-top: 5rem;
   box-shadow: #dbdbdb 0px 2px 8px 0px;
+  border: 1px solid white;
 }
 input[type="submit"].chips {
   padding: 3px 10px;
   border-radius: 50px;
   width: auto;
-  margin: 8px;
-  font-size: 1.5rem;
+  margin: 4px;
+  font-size: 1rem;
 }
 .chips-data {
   display: flex;
 }
 input[type="submit"]:focus {
   outline: 2px solid gray;
-  background-color: orange; /* oranges! yey */
+  background-color: black;
+  color: white;
 }

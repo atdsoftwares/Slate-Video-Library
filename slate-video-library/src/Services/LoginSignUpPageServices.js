@@ -28,7 +28,8 @@ export const loginHandler = async (email, password, dispatch) => {
     });
     dispatch({ type: "LOGINDATA", payload: response.data.foundUser });
     localStorage.setItem(`token`, response.data.encodedToken);
-    toast.success(`Welcome ${response.data.foundUser.name}`);
+    toast.success(`Welcome!`);
+    console.log(response);
   } catch (error) {
     console.log(error);
   }

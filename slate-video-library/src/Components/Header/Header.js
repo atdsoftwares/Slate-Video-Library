@@ -27,7 +27,6 @@ function Header() {
           }
         />
         <div class="navigation__right">
-          <span class="material-icons navigationmi">dark_mode</span>
           {!token ? (
             <Link to="/login">
               <span class="material-icons navigationmi">login</span>

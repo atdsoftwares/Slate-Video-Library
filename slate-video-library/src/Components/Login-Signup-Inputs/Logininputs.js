@@ -10,12 +10,12 @@ import { useLoginSignupContext } from "../../Context/IndexAllContext";
 import { loginHandler } from "../../Services/LoginSignUpPageServices";
 import "./Logininputs.css";
 function Logininputs() {
-  const { dispatch, email, password, name } = useLoginSignupContext();
+  const { dispatch, email, password } = useLoginSignupContext();
   const navigate = useNavigate();
-  function submitLoginData() {
-    // e.preventDefault();
+  function submitLoginData(e) {
+    e.preventDefault();
     loginHandler(email, password, dispatch);
-    navigate("/accounts");
+    navigate("/explore");
   }
 
   const [error, setError] = useState("");
