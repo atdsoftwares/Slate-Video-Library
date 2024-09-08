@@ -74,8 +74,7 @@ function LoginInputs() {
       width={"100%"}
       height={"100%"}
       bg={"gray.200"}
-      marginTop={"10rem"}
-      marginLeft={"27rem"}
+      
     >
       <Heading as="h3" size="lg" textAlign="center" mb={6}>
         Login Page

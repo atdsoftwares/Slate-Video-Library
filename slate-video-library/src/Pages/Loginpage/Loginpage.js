@@ -12,7 +12,7 @@ function Loginpage() {
       <Header />
       <div
         className="login-page-sidebar"
-        style={{ display: "flex", marginLeft: "35rem" }}
+        style={{ display: "flex", marginLeft: "10rem" }}
       >
         <Sidebar />
         <Logininputs />

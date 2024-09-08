@@ -61,8 +61,7 @@ function Signupinputs() {
       width={"100%"}
       height={"100%"}
       bg={"gray.200"}
-      marginTop={"5rem"}
-      marginLeft={"27rem"}
+ 
     >
       <Box
         p={8}
