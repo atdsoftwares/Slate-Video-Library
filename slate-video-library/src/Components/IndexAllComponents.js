@@ -7,7 +7,7 @@ import Hero from "./Hero/Hero";
 import Spinner from "./LaodingSpinner/Spinner";
 import Logininputs from "./Login-Signup-Inputs/Logininputs";
 import Signupinputs from "./Login-Signup-Inputs/Signupinputs";
-import ModalPlaylist from "./Modal/ModalPlaylist";
+import ModalPlaylist from "./Login-Signup-Inputs/Modal/ModalPlaylist";
 import NoteTaking from "./Note Taking/NoteTaking";
 import Pagenotfound from "./PageNotFound/Pagenotfound";
 import PlaylistModal from "./PlaylistModal/PlaylistModal";

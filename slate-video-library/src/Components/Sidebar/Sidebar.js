@@ -1,63 +1,109 @@
-import { NavLink as Link, React } from "react-router-dom";
+import { NavLink as Link } from "react-router-dom";
+import { Box, Flex, Text, Icon, useColorModeValue } from "@chakra-ui/react";
+import {
+  MdHome,
+  MdExplore,
+  MdQueue,
+  MdThumbUp,
+  MdWatchLater,
+  MdHistory,
+} from "react-icons/md";
 
-import "./Sidebar.css";
 function Sidebar() {
+  const bgColor = useColorModeValue("gray.100", "gray.800");
+  const textColor = useColorModeValue("gray.800", "white");
   return (
-    <div>
-      <aside className="aside">
-        <Link to="/">
-          <div className="home">
-            <span className="material-icons sidebarmi" title="Home">
-              home
-            </span>
-            Home
-          </div>
-        </Link>
+    <Box
+      as="aside"
+      width="250px"
+      p={4}
+      bg={bgColor}
+      color="black"
+      height="100vh"
+      position="fixed"
+      left={0}
+      top={0}
+      marginTop={"60px"}
+      boxShadow="md"
+    >
+      {/* Home Link */}
+      <Link to="/" exact>
+        <Flex
+          align="center"
+          p={2}
+          mb={4}
+          _hover={{ bg: "gray.800", borderRadius: "md" }}
+        >
+          <Icon as={MdHome} w={6} h={6} mr={3} />
+          <Text>Home</Text>
+        </Flex>
+      </Link>
 
-        <Link to="/explore">
-          <div className="explore">
-            <span className="material-icons sidebarmi" title="Explore">
-              explore
-            </span>{" "}
-            Explore
-          </div>
-        </Link>
-        <Link to="/playlists">
-          <div className="playlists">
-            <span className="material-icons sidebarmi" title="Playlists">
-              queue
-            </span>{" "}
-            Playlists
-          </div>
-        </Link>
+      {/* Explore Link */}
+      <Link to="/explore">
+        <Flex
+          align="center"
+          p={2}
+          mb={4}
+          _hover={{ bg: "gray.700", borderRadius: "md" }}
+        >
+          <Icon as={MdExplore} w={6} h={6} mr={3} />
+          <Text>Explore</Text>
+        </Flex>
+      </Link>
 
-        <Link to="/likes">
-          <div className="likes">
-            <span className="material-icons sidebarmi" title="Liked Video">
-              thumb_up
-            </span>{" "}
-            Likes
-          </div>
-        </Link>
+      {/* Playlists Link */}
+      <Link to="/playlists">
+        <Flex
+          align="center"
+          p={2}
+          mb={4}
+          _hover={{ bg: "gray.700", borderRadius: "md" }}
+        >
+          <Icon as={MdQueue} w={6} h={6} mr={3} />
+          <Text>Playlists</Text>
+        </Flex>
+      </Link>
 
-        <Link to="/watchlater">
-          <div className="watchlater">
-            <span className="material-icons sidebarmi" title="History">
-              watch_later
-            </span>{" "}
-            Watch Later
-          </div>
-        </Link>
-        <Link to="/history">
-          <div className="history">
-            <span className="material-icons sidebarmi" title="History">
-              history
-            </span>{" "}
-            History
-          </div>
-        </Link>
-      </aside>
-    </div>
+      {/* Likes Link */}
+      <Link to="/likes">
+        <Flex
+          align="center"
+          p={2}
+          mb={4}
+          _hover={{ bg: "gray.700", borderRadius: "md" }}
+        >
+          <Icon as={MdThumbUp} w={6} h={6} mr={3} />
+          <Text>Likes</Text>
+        </Flex>
+      </Link>
+
+      {/* Watch Later Link */}
+      <Link to="/watchlater">
+        <Flex
+          align="center"
+          p={2}
+          mb={4}
+          _hover={{ bg: "gray.700", borderRadius: "md" }}
+        >
+          <Icon as={MdWatchLater} w={6} h={6} mr={3} />
+          <Text>Watch Later</Text>
+        </Flex>
+      </Link>
+
+      {/* History Link */}
+      <Link to="/history">
+        <Flex
+          align="center"
+          p={2}
+          mb={4}
+          _hover={{ bg: "gray.700", borderRadius: "md" }}
+        >
+          <Icon as={MdHistory} w={6} h={6} mr={3} />
+          <Text>History</Text>
+        </Flex>
+      </Link>
+    </Box>
   );
 }
 

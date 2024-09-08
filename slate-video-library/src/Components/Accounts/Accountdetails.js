@@ -1,4 +1,20 @@
-import { React, useNavigate } from "../../Utils/CustomUtils";
+import React from "react";
+import {
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  TableContainer,
+  Heading,
+  Button,
+  IconButton,
+  VStack,
+  Box,
+  Text,
+} from "@chakra-ui/react";
+import { useNavigate } from "../../Utils/CustomUtils";
 import {
   useLoginSignupContext,
   useNotesAppContext,
@@ -6,8 +22,8 @@ import {
   useWatchLaterContext,
 } from "../../Context/IndexAllContext";
 import { logoutHandler } from "../../Services/LoginSignUpPageServices";
+import { DeleteIcon } from "@chakra-ui/icons";
 
-import "./Accountdetails.css";
 function Accountdetails() {
   const { loginData } = useLoginSignupContext();
   const { addToPlaylists } = usePlaylistContext();
@@ -15,6 +31,7 @@ function Accountdetails() {
   const { email, name } = loginData;
   const { inputNotesData, deleteNotesFn } = useNotesAppContext();
   const navigate = useNavigate();
+
   function logOutUserFromApp() {
     window.location.reload();
     logoutHandler();
@@ -22,59 +39,75 @@ function Accountdetails() {
   }
 
   return (
-    <div>
-      <h1>Account Details </h1>
-      <table className="table">
-        <tr>
-          <th>Name</th>
-          <th>Email</th>
-          <th>Watchlater</th>
-          <th>Playlists</th>
-          <th>Notes</th>
-          <th>LogOut</th>
-        </tr>
-        <tr>
-          <td>{name}</td>
-          <td> {email}</td>
-          <td>{getWatchLaterVideos && getWatchLaterVideos.length}</td>
-          <td>{addToPlaylists && addToPlaylists.length}</td>
-          <td>{inputNotesData.length}</td>
-          <td>
-            <button className="btn btn-danger" onClick={logOutUserFromApp}>
-              Logout
-            </button>
-          </td>
-        </tr>
-      </table>
-      <h3 className="h3"> Notes </h3>
+    <Box maxW="1000px" mx="auto" p={6}>
+      <VStack spacing={8} align="stretch">
+        <Heading as="h1" size="xl" textAlign="center">
+          Account Details
+        </Heading>
 
-      <table className="table2">
-        <tr>
-          <th> Notes Id</th>
-          <th> Notes Title</th>
-          <th> Action</th>
-        </tr>
+        <TableContainer>
+          <Table variant="striped" colorScheme="teal">
+            <Thead>
+              <Tr>
+                <Th>Name</Th>
+                <Th>Email</Th>
+                <Th>Watchlater</Th>
+                <Th>Playlists</Th>
+                <Th>Notes</Th>
+                <Th>Logout</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              <Tr>
+                <Td>{name}</Td>
+                <Td>{email}</Td>
+                <Td>{getWatchLaterVideos?.length || 0}</Td>
+                <Td>{addToPlaylists?.length || 0}</Td>
+                <Td>{inputNotesData.length}</Td>
+                <Td>
+                  <Button colorScheme="red" onClick={logOutUserFromApp}>
+                    Logout
+                  </Button>
+                </Td>
+              </Tr>
+            </Tbody>
+          </Table>
+        </TableContainer>
 
-        {inputNotesData.map((notes) => (
-          <tr>
-            <td>{notes._id}</td>
-            <td>{notes.inputNotesTextValue}</td>
-            <td>
-              <div className="btn-action-notes">
-                <span
-                  className="material-icons"
-                  onClick={(_id) => deleteNotesFn(notes._id)}
-                  style={{ cursor: "pointer" }}
-                >
-                  delete
-                </span>
-                {/* <span className="material-icons">edit</span> */}
-              </div>
-            </td>
-          </tr>
-        ))}
-      </table>
-    </div>
+        <Heading as="h3" size="lg">
+          Notes
+        </Heading>
+
+        <TableContainer>
+          <Table variant="simple">
+            <Thead>
+              <Tr>
+                <Th>Notes ID</Th>
+                <Th>Notes Title</Th>
+                <Th>Action</Th>
+              </Tr>
+            </Thead>
+            <Tbody>
+              {inputNotesData.map((notes) => (
+                <Tr key={notes._id}>
+                  <Td>{notes._id}</Td>
+                  <Td>{notes.inputNotesTextValue}</Td>
+                  <Td>
+                    <IconButton
+                      aria-label="Delete Note"
+                      icon={<DeleteIcon />}
+                      onClick={() => deleteNotesFn(notes._id)}
+                      colorScheme="red"
+                      variant="outline"
+                    />
+                  </Td>
+                </Tr>
+              ))}
+            </Tbody>
+          </Table>
+        </TableContainer>
+      </VStack>
+    </Box>
   );
 }
 

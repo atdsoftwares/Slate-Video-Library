@@ -1,13 +1,27 @@
 import React from "react";
 import {
+  Box,
+  Input,
+  Button,
+  VStack,
+  Table,
+  Thead,
+  Tbody,
+  Tr,
+  Th,
+  Td,
+  IconButton,
+  Text,
+  useToast,
+} from "@chakra-ui/react";
+import { FaTrash, FaEdit } from "react-icons/fa";
+import {
   useNotesAppContext,
   useSingleVideoContext,
 } from "../../Context/IndexAllContext";
 
-import "./NoteTaking.css";
 function NoteTaking() {
   const { notesTakingBoxState } = useSingleVideoContext();
-
   const {
     inputNotesTextValue,
     setinputNotesTextValue,
@@ -17,63 +31,78 @@ function NoteTaking() {
     editNotesFn,
     buttonState,
   } = useNotesAppContext();
+  const toast = useToast();
+
+  const handleNoteSave = (e) => {
+    e.preventDefault();
+    saveNotesFn();
+    toast({
+      title: "Note saved.",
+      description: "Your note has been saved successfully.",
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+    });
+  };
 
   return (
-    <div
-      className="notes-container"
-      style={{
-        display: notesTakingBoxState,
-      }}
+    <Box
+      display={notesTakingBoxState ? "block" : "none"}
+      maxW="600px"
+      mx="auto"
+      p="4"
+      bg="white"
+      borderRadius="md"
+      shadow="md"
     >
-      <div class="form-data">
-        <form onSubmit={saveNotesFn}>
-          <input
-            type="text"
-            className="notes-app"
+      {/* Note Input Form */}
+      <form onSubmit={saveNotesFn}>
+        <VStack spacing="4" mb="4">
+          <Input
+            placeholder="Take notes..."
             value={inputNotesTextValue}
             onChange={(e) => setinputNotesTextValue(e.target.value)}
             required
-            placeholder="take notes "
+            focusBorderColor="teal.500"
           />
-          <input type="submit" class="submit-notes" />
-        </form>
-        <div>
-          <div>
-            <table>
-              <tr>
-                <th className="notes-data">Notes</th>
-                <th>
-                  <span class="notesmi">Action</span>
-                  {/* <span class="material-icons notesmi">edit</span> */}
-                </th>
-              </tr>
-              {inputNotesData.map((text) => (
-                <tr>
-                  <td className="notes-data"> {text.inputNotesTextValue} </td>
-                  <td>
-                    {/* <button className="btns">
-                      <span
-                        class="material-icons notesmi"
-                        onClick={(_id) => editNotesFn(text._id)}
-                      >
-                        edit
-                      </span>
-                    </button> */}
+          <Button type="submit" colorScheme="teal" width="full">
+            Save Note
+          </Button>
+        </VStack>
+      </form>
 
-                    <span
-                      class="material-icons notesmi"
-                      onClick={(_id) => deleteNotesFn(text._id)}
-                    >
-                      delete
-                    </span>
-                  </td>
-                </tr>
-              ))}
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+      {/* Notes Table */}
+      <Table variant="simple" colorScheme="teal">
+        <Thead>
+          <Tr>
+            <Th>Note</Th>
+            <Th>Action</Th>
+          </Tr>
+        </Thead>
+        <Tbody>
+          {inputNotesData.map((note) => (
+            <Tr key={note._id}>
+              <Td>{note.inputNotesTextValue}</Td>
+              <Td>
+                <IconButton
+                  icon={<FaTrash />}
+                  aria-label="Delete Note"
+                  onClick={() => deleteNotesFn(note._id)}
+                  colorScheme="red"
+                />
+              </Td>
+            </Tr>
+          ))}
+        </Tbody>
+      </Table>
+
+      {/* No Notes Message */}
+      {inputNotesData.length === 0 && (
+        <Text mt="4" color="gray.500" textAlign="center">
+          No notes available. Start taking notes!
+        </Text>
+      )}
+    </Box>
   );
 }
 

@@ -1,25 +1,36 @@
 import {
-  useEffect,
-  useState,
-  Link,
-  React,
-  useNavigate,
-} from "../../Utils/CustomUtils";
-
+  Box,
+  Button,
+  FormControl,
+  FormLabel,
+  Input,
+  Heading,
+  Text,
+  Link as ChakraLink,
+  VStack,
+  useToast,
+} from "@chakra-ui/react";
+import { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { useLoginSignupContext } from "../../Context/IndexAllContext";
 import { loginHandler } from "../../Services/LoginSignUpPageServices";
-import "./Logininputs.css";
-function Logininputs() {
+
+function LoginInputs() {
   const { dispatch, email, password } = useLoginSignupContext();
   const navigate = useNavigate();
+  const toast = useToast();
+
+  const [error, setError] = useState("");
+  const [isDisabled, setIsDisabled] = useState(true);
+
+  // Handle login submission
   function submitLoginData(e) {
     e.preventDefault();
     loginHandler(email, password, dispatch);
     navigate("/explore");
   }
 
-  const [error, setError] = useState("");
-  const [isDisabled, setIsDisabled] = useState(true);
+  // Validate the form fields
   useEffect(() => {
     if (email.length > 0 && password.length > 0) {
       setError("");
@@ -30,6 +41,7 @@ function Logininputs() {
     }
   }, [email, password]);
 
+  // Guest login details
   function setGuestLoginData(e) {
     e.preventDefault();
     const email = "6prankur@gmail.com";
@@ -38,74 +50,100 @@ function Logininputs() {
     dispatch({ type: "EMAIL", payload: email });
     dispatch({ type: "PASSWORD", payload: password });
     dispatch({ type: "NAME", payload: name });
+    toast({
+      title: "Guest Login Activated",
+      status: "info",
+      duration: 3000,
+      isClosable: true,
+    });
   }
+
   return (
-    <div>
-      <div className="Login-Form">
-        <h3 className="login-page-title"> Login Page</h3>
-        <div class="form-control">
-          <form onSubmit={submitLoginData}>
-            <label for="name">Email*</label>{" "}
-            <input
-              class="input__field"
+    <Box
+      maxW="md"
+      mx="auto"
+      mt={8}
+      p={6}
+      borderWidth={1}
+      borderRadius="lg"
+      boxShadow="lg"
+      display={"flex"}
+      flexDirection={"column"}
+      justifyContent={"center"}
+      alignItems={"center"}
+      width={"100%"}
+      height={"100%"}
+      bg={"gray.200"}
+      marginTop={"10rem"}
+      marginLeft={"27rem"}
+    >
+      <Heading as="h3" size="lg" textAlign="center" mb={6}>
+        Login Page
+      </Heading>
+      <form onSubmit={submitLoginData}>
+        <VStack spacing={4}>
+          {/* Email Input */}
+          <FormControl isRequired>
+            <FormLabel>Email</FormLabel>
+            <Input
               type="email"
-              name="email"
+              placeholder="Enter your email"
               value={email}
-              placeholder="Email"
-              required
               onChange={(e) =>
                 dispatch({ type: "EMAIL", payload: e.target.value })
               }
             />
-            <label for="name">Password*</label>{" "}
-            <input
-              class="input__field"
+          </FormControl>
+
+          {/* Password Input */}
+          <FormControl isRequired>
+            <FormLabel>Password</FormLabel>
+            <Input
               type="password"
+              placeholder="Enter your password"
               value={password}
-              name="input password"
-              placeholder="Password"
-              autoComplete="on"
-              required
-              minlength="6"
               onChange={(e) =>
                 dispatch({ type: "PASSWORD", payload: e.target.value })
               }
+              minLength="6"
             />
-            <p>
-              {" "}
-              <kbd style={{ fontSize: "1.2rem", padding: "1rem" }}>
-                * are important.
-              </kbd>{" "}
-            </p>
-            <div class="btn-container">
-              <label>
-                <input
-                  class="input__field"
-                  type="submit"
-                  name="input submit"
-                  required
-                  disabled={isDisabled}
-                />
-              </label>
-              <label>
-                <button class="btn-guest-login" onClick={setGuestLoginData}>
-                  Guest Login
-                </button>
-              </label>
-            </div>
-            <span style={{ color: "red" }}>{error}</span>
-          </form>
-          <h4 className="login-instruction">
-            Not a member ?
-            <Link to="/signup" style={{ margin: "0.5rem" }}>
-              {" "}
-              Signup
-            </Link>{" "}
-            here
-          </h4>
-        </div>
-      </div>
-    </div>
+          </FormControl>
+
+          {/* Error Message */}
+          {error && <Text color="red.500">{error}</Text>}
+
+          {/* Submit Button */}
+          <Button
+            type="submit"
+            colorScheme="teal"
+            isFullWidth
+            isDisabled={isDisabled}
+          >
+            Login
+          </Button>
+
+          {/* Guest Login Button */}
+          <Button
+            variant="outline"
+            colorScheme="teal"
+            isFullWidth
+            onClick={setGuestLoginData}
+          >
+            Guest Login
+          </Button>
+        </VStack>
+      </form>
+
+      {/* Signup Link */}
+      <Text textAlign="center" mt={4}>
+        Not a member?{" "}
+        <ChakraLink as={Link} to="/signup" color="teal.500">
+          Signup
+        </ChakraLink>{" "}
+        here
+      </Text>
+    </Box>
   );
 }
-export default Logininputs;
+
+export default LoginInputs;

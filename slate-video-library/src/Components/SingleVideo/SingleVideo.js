@@ -1,4 +1,14 @@
 import {
+  Box,
+  VStack,
+  HStack,
+  Image,
+  Heading,
+  IconButton,
+  AspectRatio,
+} from "@chakra-ui/react";
+import { FaThumbsUp, FaClock, FaPen } from "react-icons/fa";
+import {
   useSingleVideoContext,
   useWatchLaterContext,
   useLikeContext,
@@ -7,62 +17,63 @@ import { addToLikesFn } from "../../Services/LikesPageServices";
 import { addToWatchLaterVideosFn } from "../../Services/WatchLaterServices";
 import { useParams } from "../../Utils/CustomUtils";
 import { ModalPlaylist, NoteTaking } from "../IndexAllComponents";
-import "./SingleVideo.css";
 
 function SingleVideo() {
   const { videoData, setVideoId, toggleNotesApp } = useSingleVideoContext();
   const { setWatchLaterFn } = useWatchLaterContext();
   const { setLikesFn } = useLikeContext();
-
   const { _id } = useParams();
+
   setVideoId(_id);
 
   return (
-    <div>
-      <div className="single-video-card">
-        <embed
-          id="IFRAME_ID"
-          className="video__cards-iframe-videos"
-          title=" videos"
-          alt="videodata"
-          src={videoData.videoUrl}
-        ></embed>
-      </div>
-      <div className="single-video-details">
-        <img
-          src={videoData.creator_pic}
-          alt="crator_image"
-          title="cratorspic"
-          className="single-videopage-creatorpic"
-        />
-        <div className="title-name-details">
-          <h4> {videoData.title}</h4>
-          <h4> {videoData.creator_name}</h4>
-        </div>
-        <div className="single-video-page-buttons">
-          <span
-            class="material-icons singlevideomi"
-            onClick={() => addToLikesFn(videoData, setLikesFn)}
-          >
-            thumb_up
-          </span>
-          <span
-            class="material-icons singlevideomi"
-            onClick={() => addToWatchLaterVideosFn(videoData, setWatchLaterFn)}
-          >
-            watch_later
-          </span>
-          <span class="material-icons singlevideomi">
-            <ModalPlaylist />
-          </span>
-          <span class="material-icons singlevideomi" onClick={toggleNotesApp}>
-            create
-          </span>
-        </div>
-      </div>
+    <Box p="4" maxW="800px" mx="auto">
+      {/* Video Embed */}
+      <AspectRatio ratio={16 / 9} mb="4">
+        <iframe title="video" src={videoData.videoUrl} allowFullScreen></iframe>
+      </AspectRatio>
 
+      {/* Video Details */}
+      <VStack align="start" spacing="4">
+        <HStack spacing="4">
+          <Image
+            src={videoData.creator_pic}
+            alt="creator"
+            boxSize="50px"
+            borderRadius="full"
+          />
+          <VStack align="start" spacing="0">
+            <Heading size="md">{videoData.title}</Heading>
+            <Heading size="sm" color="gray.500">
+              {videoData.creator_name}
+            </Heading>
+          </VStack>
+        </HStack>
+
+        {/* Action Buttons */}
+        <HStack spacing="4">
+          <IconButton
+            aria-label="Like video"
+            icon={<FaThumbsUp />}
+            onClick={() => addToLikesFn(videoData, setLikesFn)}
+          />
+          <IconButton
+            aria-label="Watch Later"
+            icon={<FaClock />}
+            onClick={() => addToWatchLaterVideosFn(videoData, setWatchLaterFn)}
+          />
+          <ModalPlaylist />
+          <IconButton
+            aria-label="Take Notes"
+            icon={<FaPen />}
+            onClick={toggleNotesApp}
+          />
+        </HStack>
+      </VStack>
+
+      {/* Notes Section */}
       <NoteTaking />
-    </div>
+    </Box>
   );
 }
 

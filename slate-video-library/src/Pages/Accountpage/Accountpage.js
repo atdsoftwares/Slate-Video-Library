@@ -1,3 +1,5 @@
+import React from "react";
+import { Box, Flex, useBreakpointValue } from "@chakra-ui/react";
 import {
   Accountdetails,
   Footer,
@@ -6,18 +8,26 @@ import {
 } from "../../Components/IndexAllComponents";
 
 function Accountpage() {
+  // Adjust sidebar width based on screen size
+  const sidebarWidth = useBreakpointValue({ base: "full", md: "250px" });
+
   return (
-    <div>
+    <Box>
       <Header />
-      <div
-        className="account-page-sidebar"
-        style={{ display: "flex", marginLeft: "25rem" }}
+
+      <Flex
+        direction={{ base: "column", md: "row" }}
+        minHeight="calc(100vh - 60px)" // Adjust based on header/footer height
       >
-        <Sidebar />
-        <Accountdetails />
-      </div>
+        <Sidebar width={sidebarWidth} />
+
+        <Box flex="1" p={4}>
+          <Accountdetails />
+        </Box>
+      </Flex>
+
       <Footer />
-    </div>
+    </Box>
   );
 }
 

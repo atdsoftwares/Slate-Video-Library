@@ -10,8 +10,16 @@ import {
   getLikedVideosFn,
   removeLikedVideosFn,
 } from "../../Services/LikesPageServices";
+import {
+  Box,
+  Flex,
+  Heading,
+  IconButton,
+  Text,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import { MdDelete } from "react-icons/md";
 
-import "./Likespage.css";
 function Likespage() {
   const { getLikedVideos, setLikesFn } = useLikeContext();
 
@@ -19,34 +27,64 @@ function Likespage() {
     getLikedVideosFn(setLikesFn);
   }, []);
 
+  // Color mode adjustments for light/dark themes
+  const bg = useColorModeValue("gray.50", "gray.700");
+  const textColor = useColorModeValue("gray.600", "gray.300");
+
   return (
-    <div>
+    <Box>
+      {/* Sticky Header */}
       <Header />
-      <div
-        className="likes-page-sidebar"
-        style={{ display: "flex", marginLeft: "15rem" }}
-      >
+
+      <Flex direction={{ base: "column", md: "row" }} minH="100vh">
+        {/* Sidebar */}
         <Sidebar />
-        <div className="likes-container">
-          {getLikedVideos.length <= 0 ? (
-            <h3 className="historypage-title">THERE ARE NO LIKED VIDEOS </h3>
+
+        <Box flex="1" p={4} maxW="1200px" mx="auto">
+          {/* Check if there are liked videos */}
+          {getLikedVideos.length === 0 ? (
+            <Heading
+              as="h3"
+              size="lg"
+              textAlign="center"
+              mt={6}
+              color={textColor}
+            >
+              You haven’t liked any videos yet.
+            </Heading>
           ) : (
-            getLikedVideos.map((like) => (
-              <div className="likesdata">
-                <SmallVideoCards props={like.videoUrl} />
-                <span
-                  className="material-icons likesmi"
-                  onClick={(_id) => removeLikedVideosFn(like._id, setLikesFn)}
+            // Render liked videos
+            <Flex direction="column" gap={4}>
+              {getLikedVideos.map((like) => (
+                <Flex
+                  key={like._id}
+                  align="center"
+                  justify="space-between"
+                  p={4}
+                  bg={bg}
+                  borderRadius="md"
+                  boxShadow="md"
                 >
-                  delete
-                </span>
-              </div>
-            ))
+                  {/* Video Card */}
+                  <SmallVideoCards props={like.videoUrl} />
+
+                  {/* Delete Button */}
+                  <IconButton
+                    icon={<MdDelete />}
+                    aria-label="Remove from liked videos"
+                    colorScheme="red"
+                    onClick={() => removeLikedVideosFn(like._id, setLikesFn)}
+                  />
+                </Flex>
+              ))}
+            </Flex>
           )}
-        </div>
-      </div>
+        </Box>
+      </Flex>
+
+      {/* Footer */}
       <Footer />
-    </div>
+    </Box>
   );
 }
 

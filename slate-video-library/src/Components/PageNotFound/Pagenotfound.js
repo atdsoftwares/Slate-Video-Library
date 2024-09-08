@@ -1,33 +1,62 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  Box,
+  Text,
+  Image,
+  Button,
+  Heading,
+  VStack,
+  Container,
+} from "@chakra-ui/react";
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
-import "./Pagenotfound.css";
+
 function Pagenotfound() {
   const [counter, setCounter] = useState(12);
   const navigate = useNavigate();
-  function componentDidMount() {
-    setTimeout(() => {
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
       navigate("/");
     }, 15000);
-  }
-  useEffect(() => {
-    componentDidMount();
+
     const timer =
       counter > 0 && setInterval(() => setCounter(counter - 1), 1000);
-    return () => clearInterval(timer);
-  }, [counter]);
+
+    return () => {
+      clearTimeout(timeout);
+      clearInterval(timer);
+    };
+  }, [counter, navigate]);
 
   return (
-    <div>
+    <Box textAlign="center" py="6" px="4" bg="gray.50" minH="100vh">
       <Header />
-      <h1> Page Not Found (will be redirected to Homepage in :{counter} ) </h1>
-      <div className="img">
-        <img src="https://svgshare.com/i/hXD.svg" alt="404" />
-      </div>
-
+      <Container centerContent>
+        <VStack spacing={6}>
+          <Heading as="h1" size="2xl" color="teal.500">
+            Page Not Found
+          </Heading>
+          <Text fontSize="lg" color="gray.600">
+            Oops! The page you're looking for does not exist.
+          </Text>
+          <Text fontSize="lg" color="gray.500">
+            You will be redirected to the homepage in {counter} seconds.
+          </Text>
+          <Image
+            src="https://svgshare.com/i/hXD.svg"
+            alt="404"
+            maxW="400px"
+            mt="8"
+          />
+          <Button colorScheme="teal" onClick={() => navigate("/")}>
+            Go to Homepage
+          </Button>
+        </VStack>
+      </Container>
       <Footer />
-    </div>
+    </Box>
   );
 }
 

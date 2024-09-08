@@ -3,7 +3,7 @@ import {
   useExplorePageContext,
   useHistoryContext,
 } from "../../Context/IndexAllContext";
-import "./Historypage.css";
+
 import {
   Footer,
   Header,
@@ -15,6 +15,15 @@ import {
   removeAllHistoryFn,
   removeVideoFromHistoryFn,
 } from "../../Services/HistoryPageServices";
+import {
+  Box,
+  Button,
+  Flex,
+  Heading,
+  IconButton,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import { MdDelete } from "react-icons/md";
 
 function Historypage() {
   const { getHistory, setHistoryFn } = useHistoryContext();
@@ -24,47 +33,77 @@ function Historypage() {
     getHistoryFn(setHistoryFn);
   }, [finalData]);
 
+  // Move the `useColorModeValue` hook calls outside of conditional rendering
+  const bg = useColorModeValue("gray.50", "gray.700");
+  const textColor = useColorModeValue("gray.600", "gray.300");
+  const buttonBg = useColorModeValue("gray.50", "gray.700");
+
   return (
-    <div>
+    <Box>
+      {/* Sticky Header */}
       <Header />
-      <div
-        className="likes-page-sidebar"
-        style={{ display: "flex", marginLeft: "15rem" }}
-      >
+
+      <Flex direction={{ base: "column", md: "row" }} minH="100vh">
+        {/* Sidebar */}
         <Sidebar />
 
-        <div className="watchlater-container">
-          <button
-            className="btn btn-danger clearallhistory"
+        <Box flex="1" p={4} maxW="1200px" mx="auto">
+          {/* Clear History Button */}
+          <Button
+            colorScheme="red"
             onClick={() => removeAllHistoryFn(setHistoryFn)}
+            mb={4}
+            isDisabled={getHistory.length === 0}
           >
-            clear history
-          </button>
+            Clear History
+          </Button>
 
-          {getHistory.length <= 0 ? (
-            <h3 className="historypage-title">
-              {" "}
-              THE HISTORY IS EMPTY , WATCH SOMETHING TO ADD HERE{" "}
-            </h3>
+          {/* Check if history is empty */}
+          {getHistory.length === 0 ? (
+            <Heading
+              as="h3"
+              size="lg"
+              textAlign="center"
+              mt={6}
+              color={textColor}
+            >
+              Your history is empty. Watch something to see it here.
+            </Heading>
           ) : (
-            getHistory.map((history) => (
-              <div className="watchlaterdata">
-                <SmallVideoCards props={history.videoUrl} />
-                <span
-                  className="material-icons watchlatermi"
-                  onClick={(_id) =>
-                    removeVideoFromHistoryFn(history._id, setHistoryFn)
-                  }
+            // Render history items
+            <Flex direction="column" gap={4}>
+              {getHistory.map((history) => (
+                <Flex
+                  key={history._id}
+                  align="center"
+                  justify="space-between"
+                  p={4}
+                  bg={bg}
+                  borderRadius="md"
+                  boxShadow="md"
                 >
-                  delete
-                </span>
-              </div>
-            ))
+                  {/* Video Card */}
+                  <SmallVideoCards props={history.videoUrl} />
+
+                  {/* Delete Button */}
+                  <IconButton
+                    icon={<MdDelete />}
+                    aria-label="Remove from history"
+                    colorScheme="red"
+                    onClick={() =>
+                      removeVideoFromHistoryFn(history._id, setHistoryFn)
+                    }
+                  />
+                </Flex>
+              ))}
+            </Flex>
           )}
-        </div>
-      </div>
+        </Box>
+      </Flex>
+
+      {/* Footer */}
       <Footer />
-    </div>
+    </Box>
   );
 }
 

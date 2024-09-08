@@ -1,44 +1,98 @@
-import { Link, React } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useExplorePageContext } from "../../Context/IndexAllContext";
-import "./Header.css";
+import {
+  Box,
+  Flex,
+  Text,
+  InputGroup,
+  Input,
+  InputRightElement,
+  Button,
+  IconButton,
+  Spacer,
+  useColorModeValue,
+} from "@chakra-ui/react";
+import { FaSearch } from "react-icons/fa";
+import { MdLogin, MdAccountCircle } from "react-icons/md";
+
 function Header() {
   const { dispatch } = useExplorePageContext();
   const token = localStorage.getItem("token");
+
+  // Theme-based color adjustment
+  const bgColor = useColorModeValue("gray.100", "gray.800");
+  const textColor = useColorModeValue("gray.900", "white");
+  const inputBgColor = useColorModeValue("white", "gray.700");
+
   return (
-    <div>
-      <nav class="navigation-menu">
-        <div class="navigation__left">
-          <Link to="/">
-            <div class="navigation__logo">
-              <img
-                src="https://img.icons8.com/parakeet/48/000000/experimental-internet-parakeet.png"
-                alt="logo"
-              />{" "}
+    <Box
+      bg={bgColor}
+      px={4}
+      py={3}
+      boxShadow="md"
+      position="sticky" // Sticky header
+      top={0} // Stick to top of the viewport
+      zIndex={1000} // Ensures it stays above other content
+      width="100%" // Full width to cover the top
+    >
+      <Flex alignItems="center">
+        {/* Logo */}
+        <Link to="/">
+          <Flex alignItems="center">
+            <img
+              src={require("../../assets/playlist.png")}
+              alt="logo"
+              style={{ marginRight: "8px", height: "40px", width: "40px" }}
+            />
+            <Text fontSize="2xl" fontWeight="bold" color="teal.500">
               Slate-Videos
-            </div>
-          </Link>
-        </div>
-        <input
-          type="search"
-          class="navigation__input"
-          placeholder="search item"
-          onChange={(e) =>
-            dispatch({ type: "SEARCHBAR", payload: e.target.value })
-          }
-        />
-        <div class="navigation__right">
+            </Text>
+          </Flex>
+        </Link>
+
+        <Spacer />
+
+        {/* Search Bar */}
+        <InputGroup maxW="600px" mx={4}>
+          <Input
+            placeholder="Search item"
+            bg={inputBgColor}
+            borderRadius="md"
+            onChange={(e) =>
+              dispatch({ type: "SEARCHBAR", payload: e.target.value })
+            }
+            _focus={{ borderColor: "teal.400" }}
+          />
+          <InputRightElement>
+            <IconButton
+              icon={<FaSearch />}
+              aria-label="Search"
+              colorScheme="teal"
+              variant="solid"
+            />
+          </InputRightElement>
+        </InputGroup>
+
+        <Spacer />
+
+        {/* Login/Account Button */}
+        <div>
           {!token ? (
             <Link to="/login">
-              <span class="material-icons navigationmi">login</span>
+              <Button colorScheme="teal" leftIcon={<MdLogin />}>
+                Login
+              </Button>
             </Link>
           ) : (
             <Link to="/accounts">
-              <span class="material-icons navigationmi">account_circle</span>
+              <Button colorScheme="teal" leftIcon={<MdAccountCircle />}>
+                Account
+              </Button>
             </Link>
           )}
         </div>
-      </nav>
-    </div>
+      </Flex>
+    </Box>
   );
 }
 

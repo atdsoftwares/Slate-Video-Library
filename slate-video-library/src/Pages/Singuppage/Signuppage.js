@@ -12,7 +12,7 @@ function Signuppage() {
       <Header />
       <div
         className="signup-page-sidebar"
-        style={{ display: "flex", marginLeft: "25rem" }}
+        style={{ display: "flex", marginLeft: "35rem" }}
       >
         <Sidebar />
         <Signupinputs />

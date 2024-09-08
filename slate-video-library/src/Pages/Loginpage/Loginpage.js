@@ -6,14 +6,13 @@ import {
   Sidebar,
 } from "../../Components/IndexAllComponents";
 
-import "./Loginpage.css";
 function Loginpage() {
   return (
     <div>
       <Header />
       <div
         className="login-page-sidebar"
-        style={{ display: "flex", marginLeft: "25rem" }}
+        style={{ display: "flex", marginLeft: "35rem" }}
       >
         <Sidebar />
         <Logininputs />
