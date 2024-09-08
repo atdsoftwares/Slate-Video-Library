@@ -71,7 +71,7 @@ function Explorepage() {
           <Chips />
 
           {/* Video cards */}
-          <Box mt={4}>
+          <Box mt={4} marginBottom={"6rem"}>
             {isLoading ? (
               <ChakraSpinner size="xl" />
             ) : (

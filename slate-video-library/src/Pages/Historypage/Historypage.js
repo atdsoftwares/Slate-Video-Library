@@ -43,7 +43,7 @@ function Historypage() {
       {/* Sticky Header */}
       <Header />
 
-      <Flex direction={{ base: "column", md: "row" }} minH="100vh">
+      <Flex direction={{ base: "column", md: "row" }} minH="100vh" marginLeft={"15rem"}>
         {/* Sidebar */}
         <Sidebar />
 

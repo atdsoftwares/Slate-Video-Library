@@ -72,7 +72,10 @@ function SingleVideo() {
       </VStack>
 
       {/* Notes Section */}
+     
+
       <NoteTaking />
+     
     </Box>
   );
 }

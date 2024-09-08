@@ -72,14 +72,14 @@ function NoteTaking() {
       </form>
 
       {/* Notes Table */}
-      <Table variant="simple" colorScheme="teal">
+      <Table variant="simple" colorScheme="teal" marginBottom={"2rem"}>
         <Thead>
           <Tr>
             <Th>Note</Th>
             <Th>Action</Th>
           </Tr>
         </Thead>
-        <Tbody>
+        <Tbody >
           {inputNotesData.map((note) => (
             <Tr key={note._id}>
               <Td>{note.inputNotesTextValue}</Td>
